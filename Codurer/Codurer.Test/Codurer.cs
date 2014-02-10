@@ -1,4 +1,5 @@
-﻿namespace CodurerApp.Test
+﻿using System;
+namespace CodurerApp.Test
 {
     class Codurer
     {
@@ -11,7 +12,10 @@
 
         internal void Send(string command)
         {
-            throw new System.NotImplementedException();
+            var userName = 
+                command.Split(new string[] { "->" }, StringSplitOptions.RemoveEmptyEntries)[0].Trim();
+
+            userService.AddUser(userName);
         }
     }
 }
