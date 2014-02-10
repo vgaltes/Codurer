@@ -37,7 +37,8 @@
 
         public void Post(string message, string userName)
         {
-            throw new NotImplementedException();
+            var currentUser = users.First(user => user.Name == userName);
+            currentUser.AddMessage(message);
         }
     }
 }
