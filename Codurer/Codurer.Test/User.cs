@@ -1,21 +1,30 @@
 ﻿namespace CodurerApp.Test
 {
     using System.Collections.Generic;
+    using System.Collections.ObjectModel;
 
     public class User
     {
+        private List<string> messages;
+
         public User()
         {
-            Messages = new List<string>();
+            messages = new List<string>();
         }
 
         public string Name { get; set; }
 
-        public List<string> Messages { get; set; }
+        public ReadOnlyCollection<string> Messages
+        {
+            get
+            {
+                return new ReadOnlyCollection<string>(messages);
+            }
+        }
 
         internal void AddMessage(string message)
         {
-            Messages.Add(message);
+            messages.Add(message);
         }
     }
 }
