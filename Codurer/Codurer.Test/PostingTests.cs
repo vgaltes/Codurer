@@ -34,5 +34,16 @@
             userService.Verify(uService => uService.Post("new message", "Alice"));
         }
 
+        [TestMethod]
+        public void WhenAnExistingUserPostAMessage_TheUserIsNotCreatedAgain()
+        {
+            var firstCommand = "Alice -> first message";
+            var secondCommand = "Alice -> new message";
+
+            codurer.Send(firstCommand);
+            codurer.Send(secondCommand);
+
+            userService.Verify(uService => uService.AddUser("Alice"), Times.Once());
+        }
     }
 }
