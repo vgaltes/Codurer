@@ -5,6 +5,11 @@
 
     public class InMemoryUserService : UserService
     {
+        public InMemoryUserService()
+        {
+            Users = new List<User>();
+        }
+
         public IList<User> Users
         {
             get;
@@ -13,7 +18,8 @@
 
         public void AddUser(string userName)
         {
-            throw new NotImplementedException();
+            var newUser = new User { Name = userName };
+            Users.Add(newUser);
         }
 
         public void Post(string message, string userName)
