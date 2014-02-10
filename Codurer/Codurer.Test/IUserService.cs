@@ -4,6 +4,6 @@
     {
         void AddUser(string userName);
 
-        object Post(string p1, string p2);
+        void Post(string message, string userName);
     }
 }
