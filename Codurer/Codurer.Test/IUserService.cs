@@ -1,6 +1,6 @@
 ﻿namespace CodurerApp.Test
 {
-    public interface IUserService
+    public interface UserService
     {
         void AddUser(string userName);
 

@@ -4,9 +4,9 @@
 
     class Codurer
     {
-        private readonly IUserService userService;
+        private readonly UserService userService;
 
-        public Codurer(IUserService userService)
+        public Codurer(UserService userService)
         {
             this.userService = userService;
         }

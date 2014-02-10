@@ -6,13 +6,13 @@
     [TestClass]
     public class PostingTests
     {
-        private Mock<IUserService> userService;
+        private Mock<UserService> userService;
         private Codurer codurer;
 
         [TestInitialize]
         public void TestInitialize()
         {
-            userService = new Mock<IUserService>();
+            userService = new Mock<UserService>();
             codurer = new Codurer(userService.Object);
         }
 
