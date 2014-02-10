@@ -17,5 +17,17 @@
 
             userService.Verify(uService => uService.AddUser("Alice"));
         }
+
+        [TestMethod]
+        public void WhenAUserPostAMessage_TheMessageIsAddedToHim()
+        {
+            var userService = new Mock<IUserService>();
+            var codurer = new Codurer(userService.Object);
+
+            var command = "Alice -> new message";
+            codurer.Send(command);
+
+            userService.Verify(uService => uService.Post("new message", "Alice"));
+        }
     }
 }
