@@ -7,10 +7,17 @@
     [TestClass]
     public class InMemoryUserServicePostingTests
     {
+        private InMemoryUserService userService;
+
+        [TestInitialize]
+        public void TestInitialize()
+        {
+            userService = new InMemoryUserService();
+        }
+
         [TestMethod]
         public void WhenAddingAUser_ANewUserIsAddedToCollection()
         {
-            var userService = new InMemoryUserService();
             var userName = "Alice";
 
             userService.AddUser(userName);
@@ -22,7 +29,6 @@
         [TestMethod]
         public void WhenAddingAnExistingUser_TheUserIsNotAddedToCollection()
         {
-            var userService = new InMemoryUserService();
             var userName = "Alice";
 
             userService.AddUser(userName);
