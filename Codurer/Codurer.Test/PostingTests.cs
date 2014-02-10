@@ -6,12 +6,19 @@
     [TestClass]
     public class PostingTests
     {
+        private Mock<IUserService> userService;
+        private Codurer codurer;
+
+        [TestInitialize]
+        public void TestInitialize()
+        {
+            userService = new Mock<IUserService>();
+            codurer = new Codurer(userService.Object);
+        }
+
         [TestMethod]
         public void WhenANewUserPostAMessage_TheUserIsCreated()
         {
-            var userService = new Mock<IUserService>();
-            var codurer = new Codurer(userService.Object);
-
             var command = "Alice -> new message";
             codurer.Send(command);
 
@@ -21,13 +28,11 @@
         [TestMethod]
         public void WhenAUserPostAMessage_TheMessageIsAddedToHim()
         {
-            var userService = new Mock<IUserService>();
-            var codurer = new Codurer(userService.Object);
-
             var command = "Alice -> new message";
             codurer.Send(command);
 
             userService.Verify(uService => uService.Post("new message", "Alice"));
         }
+
     }
 }
