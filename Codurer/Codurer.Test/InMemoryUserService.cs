@@ -2,24 +2,28 @@
 {
     using System;
     using System.Collections.Generic;
+    using System.Collections.ObjectModel;
 
     public class InMemoryUserService : UserService
     {
+        private readonly List<User> users;
         public InMemoryUserService()
         {
-            Users = new List<User>();
+            users = new List<User>();
         }
 
-        public IList<User> Users
+        public ReadOnlyCollection<User> Users
         {
-            get;
-            set;
+            get
+            {
+                return new ReadOnlyCollection<User>(users);
+            }
         }
 
         public void AddUser(string userName)
         {
             var newUser = new User { Name = userName };
-            Users.Add(newUser);
+            users.Add(newUser);
         }
 
         public void Post(string message, string userName)
