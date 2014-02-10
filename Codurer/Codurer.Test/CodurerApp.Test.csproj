@@ -59,7 +59,10 @@
   </Choose>
   <ItemGroup>
     <Compile Include="Codurer.cs" />
-    <Compile Include="IUserService.cs" />
+    <Compile Include="InMemoryUserService.cs" />
+    <Compile Include="InMemoryUserServicePostingTests.cs" />
+    <Compile Include="User.cs" />
+    <Compile Include="UserService.cs" />
     <Compile Include="PostingTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
