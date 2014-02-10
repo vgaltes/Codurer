@@ -3,6 +3,7 @@
     using System;
     using System.Collections.Generic;
     using System.Collections.ObjectModel;
+    using System.Linq;
 
     public class InMemoryUserService : UserService
     {
@@ -22,8 +23,16 @@
 
         public void AddUser(string userName)
         {
+            if (Exists(userName))
+                return;
+
             var newUser = new User { Name = userName };
             users.Add(newUser);
+        }
+
+        private bool Exists(string userName)
+        {
+            return users.Any(user => user.Name == userName);
         }
 
         public void Post(string message, string userName)
