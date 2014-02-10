@@ -37,5 +37,17 @@
             userService.Users.Should().HaveCount(1);
             userService.Users.First().Name.Should().Be(userName);
         }
+
+        [TestMethod]
+        public void WhenPostingAMessage_TheMessageIsAddedToMessageCollection()
+        {
+            var userName = "Alice";
+            var message = "new message";
+
+            userService.AddUser(userName);
+            userService.Post(message, userName);
+
+            userService.Users.First().Messages.Should().HaveCount(1);
+        }
     }
 }
