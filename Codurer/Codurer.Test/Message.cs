@@ -15,6 +15,9 @@
 
         internal string Format()
         {
+            if (DateTime.Now - postingTime < TimeSpan.FromSeconds(1))
+                return string.Format("{0} (now)", this.text);
+
             return this.text;
         }
     }
