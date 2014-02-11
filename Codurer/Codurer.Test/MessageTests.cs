@@ -28,5 +28,16 @@
 
             result.Should().Be(messageText + " (2 seconds ago)");
         }
+
+        [TestMethod]
+        public void GivenAMessagePostedMoreThanOneMinutesAgoAndLessThanOneHourAgo_FormatReturnsTheMessagePlusMinutes()
+        {
+            var messageText = "message text";
+            var message = new Message(messageText, DateTime.Now.AddMinutes(-2));
+
+            var result = message.Format();
+
+            result.Should().Be(messageText + " (2 minutes ago)");
+        }
     }
 }
