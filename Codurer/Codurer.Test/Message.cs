@@ -21,6 +21,8 @@
                 return string.Format("{0} (now)", this.text);
             else if (now - postingTime < TimeSpan.FromMinutes(1))
                 return string.Format("{0} ({1} seconds ago)", this.text, (now - postingTime).Seconds);
+            else if (now - postingTime < TimeSpan.FromHours(1))
+                return string.Format("{0} ({1} minutes ago)", this.text, (now - postingTime).Minutes);
 
             return this.text;
         }
