@@ -11,13 +11,20 @@
             this.userService = userService;
         }
 
-        internal void Send(string command)
+        internal string Send(string command, DateTime timeSended)
         {
             var userName = GetUserNameFromCommand(command);
             userService.AddUser(userName);
 
             var message = GetMessageFromCommand(command);
             userService.Post(message, userName);
+
+            return string.Empty;
+        }
+
+        internal string Send(string command)
+        {
+            return Send(command, DateTime.Now);
         }
 
         private static string GetUserNameFromCommand(string command)
