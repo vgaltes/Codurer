@@ -13,11 +13,11 @@
             users = new List<User>();
         }
 
-        public ReadOnlyCollection<User> Users
+        public IEnumerable<User> Users
         {
             get
             {
-                return new ReadOnlyCollection<User>(users);
+                return users;
             }
         }
 
@@ -40,11 +40,11 @@
             var currentUser = users.First(user => user.Name == userName);
             currentUser.AddMessage(message);
         }
-        
-        public string GetMessagesFrom(string userName)
+
+        public IEnumerable<string> GetMessagesFrom(string userName)
         {
             var currentUser = users.First(user => user.Name == userName);
-            return currentUser.Messages.First();
+            return currentUser.Messages;
         }
     }
 }

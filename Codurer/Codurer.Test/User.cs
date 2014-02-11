@@ -14,11 +14,11 @@
 
         public string Name { get; set; }
 
-        public ReadOnlyCollection<string> Messages
+        public IEnumerable<string> Messages
         {
             get
             {
-                return new ReadOnlyCollection<string>(messages);
+                return messages;
             }
         }
 
