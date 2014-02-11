@@ -1,10 +1,13 @@
 ﻿namespace CodurerApp.Test
 {
+    using System;
     using System.Collections.Generic;
 
     public interface UserService
     {
         void AddUser(string userName);
+
+        void Post(string message, string userName, DateTime postingTime);
 
         void Post(string message, string userName);
 

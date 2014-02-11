@@ -20,8 +20,8 @@
 
             var messages = userService.GetMessagesFrom("Bob");
             messages.Should().HaveCount(2);
-            messages.First().Should().Be(message2);
-            messages.Skip(1).Take(1).First().Should().Be(message1);
+            messages.First().Should().StartWith(message2);
+            messages.Skip(1).Take(1).First().Should().StartWith(message1);
         }
     }
 }

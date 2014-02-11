@@ -35,16 +35,23 @@
             return users.Any(user => user.Name == userName);
         }
 
-        public void Post(string message, string userName)
+        public void Post(string message, string userName, DateTime postingTime)
         {
             var currentUser = users.First(user => user.Name == userName);
-            currentUser.AddMessage(message);
+            currentUser.AddMessage(new Message(message, postingTime));
+        }
+
+        public void Post(string message, string userName)
+        {
+            Post(message, userName, DateTime.Now);
         }
 
         public IEnumerable<string> GetMessagesFrom(string userName)
         {
             var currentUser = users.First(user => user.Name == userName);
-            return currentUser.Messages;
+            return currentUser.Messages
+                .OrderByDescending(message => message.postingTime)
+                .Select(message => message.Format());
         }
     }
 }

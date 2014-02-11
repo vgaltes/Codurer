@@ -5,16 +5,16 @@
 
     public class User
     {
-        private List<string> messages;
+        private List<Message> messages;
 
         public User()
         {
-            messages = new List<string>();
+            messages = new List<Message>();
         }
 
         public string Name { get; set; }
 
-        public IEnumerable<string> Messages
+        public IEnumerable<Message> Messages
         {
             get
             {
@@ -22,7 +22,7 @@
             }
         }
 
-        internal void AddMessage(string message)
+        internal void AddMessage(Message message)
         {
             messages.Add(message);
         }
