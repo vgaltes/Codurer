@@ -19,13 +19,14 @@
             var now = DateTime.Now;
             var nowFormatRule = new NowFormatRule();
             var secondsFormatRule = new SecondsFormatRule();
+            var minutesFormatRule = new MinutesFormatRule();
 
             if (nowFormatRule.IsSatisfied(now, postingTime))
                 return nowFormatRule.Format(text, now, postingTime);
             else if (secondsFormatRule.IsSatisfied(now, postingTime))
                 return secondsFormatRule.Format(text, now, postingTime);
-            else if (now - postingTime < TimeSpan.FromHours(1))
-                return string.Format("{0} ({1} minutes ago)", this.text, (now - postingTime).Minutes);
+            else if (minutesFormatRule.IsSatisfied(now, postingTime))
+                return minutesFormatRule.Format(text, now, postingTime);
 
             return this.text;
         }
