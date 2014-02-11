@@ -59,6 +59,8 @@
   </Choose>
   <ItemGroup>
     <Compile Include="Codurer.cs" />
+    <Compile Include="FormatRules\FormatRule.cs" />
+    <Compile Include="FormatRules\NowFormatRule.cs" />
     <Compile Include="InMemoryUserService.cs" />
     <Compile Include="InMemoryUserServicePostingTests.cs" />
     <Compile Include="InMemoryUserServiceReadingTests.cs" />

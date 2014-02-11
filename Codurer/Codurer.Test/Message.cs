@@ -1,6 +1,7 @@
 ﻿namespace CodurerApp.Test
 {
     using System;
+    using CodurerApp.Test.FormatRules;
 
     public class Message
     {
@@ -16,9 +17,10 @@
         internal string Format()
         {
             var now = DateTime.Now;
+            var nowFormatRule = new NowFormatRule();
 
-            if (now - postingTime < TimeSpan.FromSeconds(1))
-                return string.Format("{0} (now)", this.text);
+            if (nowFormatRule.IsSatisfied(now, postingTime))
+                return nowFormatRule.Format(text, now, postingTime);
             else if (now - postingTime < TimeSpan.FromMinutes(1))
                 return string.Format("{0} ({1} seconds ago)", this.text, (now - postingTime).Seconds);
             else if (now - postingTime < TimeSpan.FromHours(1))
