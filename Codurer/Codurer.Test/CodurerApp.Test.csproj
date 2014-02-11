@@ -63,6 +63,7 @@
     <Compile Include="InMemoryUserServicePostingTests.cs" />
     <Compile Include="InMemoryUserServiceReadingTests.cs" />
     <Compile Include="Message.cs" />
+    <Compile Include="MessageTests.cs" />
     <Compile Include="ReadingTests.cs" />
     <Compile Include="User.cs" />
     <Compile Include="UserService.cs" />
