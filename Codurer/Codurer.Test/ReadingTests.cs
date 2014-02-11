@@ -13,14 +13,15 @@
         {
             var userService = new Mock<UserService>();
             var codurer = new Codurer(userService.Object);
+            var userName = "Alice";
+            var message = "new command (5 minutes ago)";
 
-            var postCommand = "Alice -> new command";
-            codurer.Send(postCommand, DateTime.Now.AddMinutes(-5));
+            userService.Setup(uService => uService.GetMessagesFrom(userName)).Returns(message);
 
-            var readCommand = "Alice";
+            var readCommand = userName;
             string wall = codurer.Send(readCommand, DateTime.Now);
 
-            wall.Should().Be("new command (5 minutes ago)");
+            wall.Should().Be(message);
         }
     }
 }

@@ -40,5 +40,11 @@
             var currentUser = users.First(user => user.Name == userName);
             currentUser.AddMessage(message);
         }
+        
+        public string GetMessagesFrom(string userName)
+        {
+            var currentUser = users.First(user => user.Name == userName);
+            return currentUser.Messages.First();
+        }
     }
 }

@@ -1,6 +1,7 @@
 ﻿namespace CodurerApp.Test
 {
     using System;
+    using System.Linq;
 
     class Codurer
     {
@@ -17,7 +18,10 @@
             userService.AddUser(userName);
 
             var message = GetMessageFromCommand(command);
-            userService.Post(message, userName);
+            if (message != string.Empty)
+                userService.Post(message, userName);
+            else
+                return userService.GetMessagesFrom(userName);
 
             return string.Empty;
         }
@@ -36,8 +40,13 @@
 
         private static string GetMessageFromCommand(string command)
         {
-            var message =
-                command.Split(new string[] { "->" }, StringSplitOptions.RemoveEmptyEntries)[1].Trim();
+            var message = string.Empty;
+            var messageSplitted =
+                command.Split(new string[] { "->" }, StringSplitOptions.RemoveEmptyEntries);
+
+            if (messageSplitted.Count() > 1)
+                message = messageSplitted[1].Trim();
+
             return message;
         }
     }
