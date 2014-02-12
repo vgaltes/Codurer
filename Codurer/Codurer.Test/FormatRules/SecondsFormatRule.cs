@@ -21,7 +21,12 @@
 
         public string Format(string messageText, DateTime now, DateTime postingTime)
         {
-            return string.Format("{0} ({1} seconds ago)", messageText, (now - postingTime).Seconds);
+            var secondsAgo = (now - postingTime).Seconds;
+            
+            if ( secondsAgo == 1)
+                return string.Format("{0} (1 second ago)", messageText, secondsAgo);
+
+            return string.Format("{0} ({1} seconds ago)", messageText, secondsAgo);
         }
     }
 }
