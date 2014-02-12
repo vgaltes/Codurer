@@ -1,34 +1,39 @@
 ﻿namespace CodurerApp.Test
 {
     using System;
-    using CodurerApp.Test.FormatRules;
+using System.Collections.Generic;
+using CodurerApp.Test.FormatRules;
 
     public class Message
     {
         private string text;
         public DateTime postingTime;
+        private List<FormatRule> formatRules;
 
         public Message(string text, DateTime postingTime)
         {
             this.text = text;
             this.postingTime = postingTime;
+            formatRules = new List<FormatRule>
+            {
+                new NowFormatRule(),
+                new SecondsFormatRule(),
+                new MinutesFormatRule()
+            };
         }
 
         internal string Format()
         {
+            var message = string.Empty;
             var now = DateTime.Now;
-            var nowFormatRule = new NowFormatRule();
-            var secondsFormatRule = new SecondsFormatRule();
-            var minutesFormatRule = new MinutesFormatRule();
 
-            if (nowFormatRule.IsSatisfied(now, postingTime))
-                return nowFormatRule.Format(text, now, postingTime);
-            else if (secondsFormatRule.IsSatisfied(now, postingTime))
-                return secondsFormatRule.Format(text, now, postingTime);
-            else if (minutesFormatRule.IsSatisfied(now, postingTime))
-                return minutesFormatRule.Format(text, now, postingTime);
+            foreach( FormatRule formatRule in formatRules)
+            {
+                if (formatRule.IsSatisfied(now, postingTime))
+                    message = formatRule.Format(text, now, postingTime);
+            }
 
-            return this.text;
+            return message;
         }
     }
 }
