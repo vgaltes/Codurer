@@ -1,5 +1,6 @@
 ﻿namespace CodurerApp.Test
 {
+    using System;
     using Microsoft.VisualStudio.TestTools.UnitTesting;
     using Moq;
 
@@ -31,7 +32,7 @@
             var command = "Alice -> new message";
             codurer.Send(command);
 
-            userService.Verify(uService => uService.Post("new message", "Alice"));
+            userService.Verify(uService => uService.Post("new message", "Alice", It.IsAny<DateTime>()));
         }
     }
 }

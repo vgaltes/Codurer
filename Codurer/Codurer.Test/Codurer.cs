@@ -1,9 +1,9 @@
 ﻿namespace CodurerApp.Test
 {
     using System;
-using System.Collections.Generic;
-using System.Collections.ObjectModel;
-using System.Linq;
+    using System.Collections.Generic;
+    using System.Collections.ObjectModel;
+    using System.Linq;
 
     class Codurer
     {
@@ -14,14 +14,14 @@ using System.Linq;
             this.userService = userService;
         }
 
-        internal IEnumerable<string> Send(string command, DateTime timeSended)
+        internal IEnumerable<string> Send(string command, DateTime postingTime)
         {
             var userName = GetUserNameFromCommand(command);
             userService.AddUser(userName);
 
             var message = GetMessageFromCommand(command);
             if (message != string.Empty)
-                userService.Post(message, userName);
+                userService.Post(message, userName, postingTime);
             else
                 return userService.GetMessagesFrom(userName);
 

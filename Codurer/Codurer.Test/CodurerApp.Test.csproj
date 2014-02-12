@@ -59,6 +59,7 @@
   </Choose>
   <ItemGroup>
     <Compile Include="Codurer.cs" />
+    <Compile Include="CodurerIntegrationTests.cs" />
     <Compile Include="FormatRules\FormatRule.cs" />
     <Compile Include="FormatRules\MinutesFormatRule.cs" />
     <Compile Include="FormatRules\SecondsFormatRule.cs" />
