@@ -39,6 +39,17 @@
         }
 
         [TestMethod]
+        public void GivenAMessagePostedOneSecondAgo_FormatReturnsTheMessagePlus1SecondAgo()
+        {
+            var messageText = "message text";
+            var message = new Message(messageText, DateTime.Now.AddSeconds(-1), formatRules);
+
+            var result = message.Format();
+
+            result.Should().Be(messageText + " (1 second ago)");
+        }
+
+        [TestMethod]
         public void GivenAMessagePostedMoreThanOneMinutesAgoAndLessThanOneHourAgo_FormatReturnsTheMessagePlusMinutes()
         {
             var messageText = "message text";
@@ -47,6 +58,17 @@
             var result = message.Format();
 
             result.Should().Be(messageText + " (2 minutes ago)");
+        }
+
+        [TestMethod]
+        public void GivenAMessagePostedOneMinuteAgo_FormatReturnsTheMessagePlus1MinuteAgo()
+        {
+            var messageText = "message text";
+            var message = new Message(messageText, DateTime.Now.AddMinutes(-1), formatRules);
+
+            var result = message.Format();
+
+            result.Should().Be(messageText + " (1 minute ago)");
         }
     }
 }
