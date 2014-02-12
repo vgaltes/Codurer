@@ -5,12 +5,27 @@
     {
         public static Command GetCommand(string commandLine)
         {
-            if (commandLine.Contains("->"))
+            if (IsPostCommand(commandLine))
                 return new PostCommand();
-            else if (commandLine.Split(new string[] { "->" }, StringSplitOptions.RemoveEmptyEntries).Length == 1)
+            else if (IsTimelineCommand(commandLine))
                 return new TimelineCommand();
 
             throw new ArgumentException("The command line contains no valid command.");
+        }
+
+        private static bool IsTimelineCommand(string commandLine)
+        {
+            return IsThereOnlyOneWord(commandLine);
+        }
+
+        private static bool IsThereOnlyOneWord(string commandLine)
+        {
+            return commandLine.IndexOf(' ') == -1;
+        }
+
+        private static bool IsPostCommand(string commandLine)
+        {
+            return commandLine.Contains("->");
         }
     }
 }
