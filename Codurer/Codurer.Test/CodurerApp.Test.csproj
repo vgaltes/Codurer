@@ -59,6 +59,7 @@
   </Choose>
   <ItemGroup>
     <Compile Include="CodurerIntegrationTests.cs" />
+    <Compile Include="CommandFactoryTests.cs" />
     <Compile Include="InMemoryUserServicePostingTests.cs" />
     <Compile Include="InMemoryUserServiceReadingTests.cs" />
     <Compile Include="MessageTests.cs" />
