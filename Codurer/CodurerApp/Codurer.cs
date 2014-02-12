@@ -34,7 +34,10 @@
 
         public void Post(string message, string user)
         {
-            userService.AddUser(user);
+            DateTime postingTime = DateTime.Now;
+
+            userService.AddUser(user);            
+            userService.Post(message, user, postingTime);
         }
 
         private static string GetUserNameFromCommand(string command)
