@@ -42,6 +42,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Codurer.cs" />
+    <Compile Include="Commands\Command.cs" />
     <Compile Include="FormatRules\FormatRule.cs" />
     <Compile Include="FormatRules\MinutesFormatRule.cs" />
     <Compile Include="FormatRules\NowFormatRule.cs" />

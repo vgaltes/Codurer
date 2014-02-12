@@ -20,8 +20,11 @@
         [TestMethod]
         public void WhenANewUserPostAMessage_TheUserIsCreated()
         {
-            var command = "Alice -> new message";
-            codurer.Send(command);
+            // var command = "Alice -> new message";
+            var user = "Alice";
+            var message = "new message";
+            // codurer.Send(command);
+            codurer.Post(message, user);
 
             userService.Verify(uService => uService.AddUser("Alice"));
         }

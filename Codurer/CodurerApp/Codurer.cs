@@ -32,6 +32,11 @@
             return Send(command, DateTime.Now);
         }
 
+        public void Post(string message, string user)
+        {
+            throw new NotImplementedException();
+        }
+
         private static string GetUserNameFromCommand(string command)
         {
             var userName =
