@@ -30,10 +30,11 @@
         [TestMethod]
         public void WhenAUserPostAMessage_TheMessageIsAddedToHim()
         {
-            var command = "Alice -> new message";
-            codurer.Send(command);
+            var user = "Alice";
+            var message = "new message";
+            codurer.Post(message, user);
 
-            userService.Verify(uService => uService.Post("new message", "Alice", It.IsAny<DateTime>()));
+            userService.Verify(uService => uService.Post(message, user, It.IsAny<DateTime>()));
         }
     }
 }
