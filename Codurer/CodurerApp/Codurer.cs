@@ -36,13 +36,13 @@
         {
             DateTime postingTime = DateTime.Now;
 
-            userService.AddUser(user);            
-            userService.Post(message, user, postingTime);
+            Post(message, user, postingTime);
         }
 
         public void Post(string message, string user, DateTime postingTime)
         {
-            throw new NotImplementedException();
+            userService.AddUser(user);
+            userService.Post(message, user, postingTime);
         }
 
         public IEnumerable<string> GetTimeline(string user)

@@ -14,11 +14,11 @@
             var codurer = new Codurer(new InMemoryUserService());
             var now = DateTime.Now;
 
-            codurer.Post("Alice", "First message", now.AddMinutes(-5));
-            codurer.Post("Alice", "Second message", now.AddMinutes(-4));
-            codurer.Post("Alice", "Third message", now.AddMinutes(-1));
-            codurer.Post("Bob", "First message", now.AddSeconds(-30));
-            codurer.Post("Bob", "Second message", now);
+            codurer.Post("First message","Alice", now.AddMinutes(-5));
+            codurer.Post("Second message", "Alice", now.AddMinutes(-4));
+            codurer.Post("Third message", "Alice", now.AddMinutes(-1));
+            codurer.Post("First message", "Bob", now.AddSeconds(-30));
+            codurer.Post("Second message", "Bob", now);
 
             var aliceWall = codurer.GetTimeline("Alice");
             var bobWall = codurer.GetTimeline("Bob");
