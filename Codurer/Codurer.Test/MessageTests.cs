@@ -4,7 +4,7 @@
     using System;
     using Microsoft.VisualStudio.TestTools.UnitTesting;
     using System.Collections.Generic;
-    using CodurerApp.Test.FormatRules;
+    using CodurerApp.FormatRules;
 
     [TestClass]
     public class MessageTests

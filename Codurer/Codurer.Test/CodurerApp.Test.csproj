@@ -58,25 +58,22 @@
     </Otherwise>
   </Choose>
   <ItemGroup>
-    <Compile Include="Codurer.cs" />
     <Compile Include="CodurerIntegrationTests.cs" />
-    <Compile Include="FormatRules\FormatRule.cs" />
-    <Compile Include="FormatRules\MinutesFormatRule.cs" />
-    <Compile Include="FormatRules\SecondsFormatRule.cs" />
-    <Compile Include="FormatRules\NowFormatRule.cs" />
-    <Compile Include="InMemoryUserService.cs" />
     <Compile Include="InMemoryUserServicePostingTests.cs" />
     <Compile Include="InMemoryUserServiceReadingTests.cs" />
-    <Compile Include="Message.cs" />
     <Compile Include="MessageTests.cs" />
     <Compile Include="ReadingTests.cs" />
-    <Compile Include="User.cs" />
-    <Compile Include="UserService.cs" />
     <Compile Include="PostingTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\CodurerApp\CodurerApp.csproj">
+      <Project>{e6c0ee7c-88b8-4ee5-a3d9-2bb728144607}</Project>
+      <Name>CodurerApp</Name>
+    </ProjectReference>
   </ItemGroup>
   <Choose>
     <When Condition="'$(VisualStudioVersion)' == '10.0' And '$(IsCodedUITest)' == 'True'">

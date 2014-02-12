@@ -5,6 +5,8 @@ VisualStudioVersion = 12.0.30110.0
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CodurerApp.Test", "Codurer.Test\CodurerApp.Test.csproj", "{7706E437-1835-4327-907E-C0496EB90FFB}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CodurerApp", "CodurerApp\CodurerApp.csproj", "{E6C0EE7C-88B8-4EE5-A3D9-2BB728144607}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -15,6 +17,10 @@ Global
 		{7706E437-1835-4327-907E-C0496EB90FFB}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{7706E437-1835-4327-907E-C0496EB90FFB}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{7706E437-1835-4327-907E-C0496EB90FFB}.Release|Any CPU.Build.0 = Release|Any CPU
+		{E6C0EE7C-88B8-4EE5-A3D9-2BB728144607}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E6C0EE7C-88B8-4EE5-A3D9-2BB728144607}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E6C0EE7C-88B8-4EE5-A3D9-2BB728144607}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E6C0EE7C-88B8-4EE5-A3D9-2BB728144607}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

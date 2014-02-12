@@ -1,10 +1,9 @@
-﻿namespace CodurerApp.Test
+﻿namespace CodurerApp
 {
     using System;
     using System.Collections.Generic;
-    using System.Collections.ObjectModel;
     using System.Linq;
-using CodurerApp.Test.FormatRules;
+    using CodurerApp.FormatRules;
 
     public class InMemoryUserService : UserService
     {

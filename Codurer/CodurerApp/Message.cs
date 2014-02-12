@@ -1,8 +1,8 @@
-﻿namespace CodurerApp.Test
+﻿namespace CodurerApp
 {
     using System;
-using System.Collections.Generic;
-using CodurerApp.Test.FormatRules;
+    using System.Collections.Generic;
+    using CodurerApp.FormatRules;
 
     public class Message
     {
@@ -17,12 +17,12 @@ using CodurerApp.Test.FormatRules;
             this.formatRules = formatRules;
         }
 
-        internal string Format()
+        public string Format()
         {
             var message = string.Empty;
             var now = DateTime.Now;
 
-            foreach( FormatRule formatRule in formatRules)
+            foreach (FormatRule formatRule in formatRules)
             {
                 if (formatRule.IsSatisfied(now, postingTime))
                     message = formatRule.Format(text, now, postingTime);

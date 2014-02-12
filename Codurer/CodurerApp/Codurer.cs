@@ -1,11 +1,10 @@
-﻿namespace CodurerApp.Test
+﻿namespace CodurerApp
 {
     using System;
     using System.Collections.Generic;
-    using System.Collections.ObjectModel;
     using System.Linq;
 
-    class Codurer
+    public class Codurer
     {
         private readonly UserService userService;
 
@@ -14,7 +13,7 @@
             this.userService = userService;
         }
 
-        internal IEnumerable<string> Send(string command, DateTime postingTime)
+        public IEnumerable<string> Send(string command, DateTime postingTime)
         {
             var userName = GetUserNameFromCommand(command);
             userService.AddUser(userName);
@@ -28,7 +27,7 @@
             return new List<string>();
         }
 
-        internal IEnumerable<string> Send(string command)
+        public IEnumerable<string> Send(string command)
         {
             return Send(command, DateTime.Now);
         }

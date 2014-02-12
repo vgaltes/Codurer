@@ -1,4 +1,4 @@
-﻿namespace CodurerApp.Test.FormatRules
+﻿namespace CodurerApp.FormatRules
 {
     using System;
 

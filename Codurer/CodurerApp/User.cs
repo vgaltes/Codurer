@@ -1,4 +1,4 @@
-﻿namespace CodurerApp.Test
+﻿namespace CodurerApp
 {
     using System.Collections.Generic;
     using System.Collections.ObjectModel;
