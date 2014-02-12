@@ -34,7 +34,7 @@
 
         public void Post(string message, string user)
         {
-            throw new NotImplementedException();
+            userService.AddUser(user);
         }
 
         private static string GetUserNameFromCommand(string command)
