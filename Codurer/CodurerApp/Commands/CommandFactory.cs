@@ -6,11 +6,33 @@
         public static Command GetCommand(string commandLine, Codurer codurer)
         {
             if (IsPostCommand(commandLine))
-                return new PostCommand(codurer);
+            {
+                var user = GetUserFrom(commandLine);
+                var message = GetMessageFrom(commandLine);
+                return new PostCommand(codurer, message, user);
+            }
             else if (IsTimelineCommand(commandLine))
-                return new TimelineCommand(codurer);
+            {
+                var user = GetUserFrom(commandLine);
+                return new TimelineCommand(codurer, user);
+            }
 
             throw new ArgumentException("The command line contains no valid command.");
+        }
+
+        private static string GetMessageFrom(string commandLine)
+        {
+            return SplitCommandLine(commandLine)[1].Trim();
+        }
+
+        private static string GetUserFrom(string commandLine)
+        {
+            return SplitCommandLine(commandLine)[0].Trim();
+        }
+
+        private static string[] SplitCommandLine(string commandLine)
+        {
+            return commandLine.Split(new string[] { "->" }, StringSplitOptions.RemoveEmptyEntries);
         }
 
         private static bool IsTimelineCommand(string commandLine)

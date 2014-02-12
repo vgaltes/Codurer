@@ -6,15 +6,26 @@
     public class PostCommand : Command
     {
         Codurer codurer;
+        string message;
+        string user;
 
-        public PostCommand(Codurer codurer)
+        public PostCommand(Codurer codurer, string message, string user)
         {
             this.codurer = codurer;
+            this.message = message;
+            this.user = user;
         }
 
         public IEnumerable<string> Execute()
         {
-            throw new NotImplementedException();
+            codurer.Post(message, user);
+            return new List<string>();
+        }
+
+        public IEnumerable<string> Execute(DateTime postingTime)
+        {
+            codurer.Post(message, user, postingTime);
+            return new List<string>();
         }
     }
 }

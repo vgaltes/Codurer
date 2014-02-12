@@ -2,6 +2,7 @@
 {
     using System;
     using System.Linq;
+    using CodurerApp.Commands;
     using FluentAssertions;
     using Microsoft.VisualStudio.TestTools.UnitTesting;
 
@@ -14,14 +15,22 @@
             var codurer = new Codurer(new InMemoryUserService());
             var now = DateTime.Now;
 
-            codurer.Post("First message","Alice", now.AddMinutes(-5));
-            codurer.Post("Second message", "Alice", now.AddMinutes(-4));
-            codurer.Post("Third message", "Alice", now.AddMinutes(-1));
-            codurer.Post("First message", "Bob", now.AddSeconds(-30));
-            codurer.Post("Second message", "Bob", now);
+            var firstAlicePostCommand = CommandFactory.GetCommand("Alice -> First message", codurer);
+            firstAlicePostCommand.Execute(now.AddMinutes(-5));
+            var secondAlicePostCommand = CommandFactory.GetCommand("Alice -> Second message", codurer);
+            secondAlicePostCommand.Execute(now.AddMinutes(-4));
+            var thirdAlicePostCommand = CommandFactory.GetCommand("Alice -> Third message", codurer);
+            thirdAlicePostCommand.Execute(now.AddMinutes(-1));
+            var firstBobPostCommand = CommandFactory.GetCommand("Bob -> First message", codurer);
+            firstBobPostCommand.Execute(now.AddSeconds(-30));
+            var secondBobPostCommand = CommandFactory.GetCommand("Bob -> Second message", codurer);
+            secondBobPostCommand.Execute(now);
 
-            var aliceWall = codurer.GetTimeline("Alice");
-            var bobWall = codurer.GetTimeline("Bob");
+            var aliceWallCommand = CommandFactory.GetCommand("Alice", codurer);
+            var aliceWall = aliceWallCommand.Execute();
+
+            var bobWallCommand = CommandFactory.GetCommand("Bob", codurer);
+            var bobWall = bobWallCommand.Execute();
 
             aliceWall.Should().HaveCount(3);
             aliceWall.First().Should().Be("Third message (1 minute ago)");
