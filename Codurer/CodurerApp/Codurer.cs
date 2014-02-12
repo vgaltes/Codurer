@@ -30,24 +30,5 @@
         {
             return userService.GetMessagesFrom(user);
         }
-
-        private static string GetUserNameFromCommand(string command)
-        {
-            var userName =
-                command.Split(new string[] { "->" }, StringSplitOptions.RemoveEmptyEntries)[0].Trim();
-            return userName;
-        }
-
-        private static string GetMessageFromCommand(string command)
-        {
-            var message = string.Empty;
-            var messageSplitted =
-                command.Split(new string[] { "->" }, StringSplitOptions.RemoveEmptyEntries);
-
-            if (messageSplitted.Count() > 1)
-                message = messageSplitted[1].Trim();
-
-            return message;
-        }
     }
 }
