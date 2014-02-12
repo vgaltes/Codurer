@@ -16,5 +16,15 @@
 
             command.Should().BeOfType<PostCommand>();
         }
+
+        [TestMethod]
+        public void GetTimelineCommand()
+        {
+            string commandLine = "Alice";
+
+            Command command = CommandFactory.GetCommand(commandLine);
+
+            command.Should().BeOfType<TimelineCommand>();
+        }
     }
 }
