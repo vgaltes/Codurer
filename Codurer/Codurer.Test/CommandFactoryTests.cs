@@ -3,16 +3,27 @@
     using CodurerApp.Commands;
     using FluentAssertions;
     using Microsoft.VisualStudio.TestTools.UnitTesting;
+    using Moq;
 
     [TestClass]
     public class CommandFactoryTests
     {
+        Mock<UserService> userService;
+        Codurer codurer;
+
+        [TestInitialize]
+        public void TestInitialize()
+        {
+            userService = new Mock<UserService>();
+            codurer = new Codurer(userService.Object);
+        }
+
         [TestMethod]
         public void GetPostCommand()
         {
-            string commandLine = "Alice -> new message";
+            string commandLine = "Alice -> new message";            
 
-            Command command = CommandFactory.GetCommand(commandLine);
+            Command command = CommandFactory.GetCommand(commandLine, codurer);
 
             command.Should().BeOfType<PostCommand>();
         }
@@ -22,7 +33,7 @@
         {
             string commandLine = "Alice";
 
-            Command command = CommandFactory.GetCommand(commandLine);
+            Command command = CommandFactory.GetCommand(commandLine, codurer);
 
             command.Should().BeOfType<TimelineCommand>();
         }

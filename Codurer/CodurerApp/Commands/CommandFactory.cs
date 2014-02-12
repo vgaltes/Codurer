@@ -3,12 +3,12 @@
     using System;
     public class CommandFactory
     {
-        public static Command GetCommand(string commandLine)
+        public static Command GetCommand(string commandLine, Codurer codurer)
         {
             if (IsPostCommand(commandLine))
-                return new PostCommand();
+                return new PostCommand(codurer);
             else if (IsTimelineCommand(commandLine))
-                return new TimelineCommand();
+                return new TimelineCommand(codurer);
 
             throw new ArgumentException("The command line contains no valid command.");
         }
