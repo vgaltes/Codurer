@@ -13,7 +13,7 @@
             this.userService = userService;
         }
 
-        public IEnumerable<string> Send(string command, DateTime postingTime)
+        /*public IEnumerable<string> Send(string command, DateTime postingTime)
         {
             var userName = GetUserNameFromCommand(command);
             userService.AddUser(userName);
@@ -30,7 +30,7 @@
         public IEnumerable<string> Send(string command)
         {
             return Send(command, DateTime.Now);
-        }
+        }*/
 
         public void Post(string message, string user)
         {
@@ -38,6 +38,11 @@
 
             userService.AddUser(user);            
             userService.Post(message, user, postingTime);
+        }
+
+        public void Post(string message, string user, DateTime postingTime)
+        {
+            throw new NotImplementedException();
         }
 
         public IEnumerable<string> GetTimeline(string user)

@@ -17,11 +17,11 @@ namespace CodurerApp
                                    
             while (line != quitString)
             {
-                var wall = codurer.Send(line);
-                foreach ( string wallMessage in wall)
-                {
-                    Console.WriteLine(wallMessage);
-                }
+                //var wall = codurer.Send(line);
+                //foreach ( string wallMessage in wall)
+                //{
+                //    Console.WriteLine(wallMessage);
+                //}
 
                 line = Console.ReadLine();
             }
