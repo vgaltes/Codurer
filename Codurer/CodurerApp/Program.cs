@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using CodurerApp.Commands;
 
 namespace CodurerApp
 {
@@ -13,16 +14,19 @@ namespace CodurerApp
             var codurer = new Codurer(new InMemoryUserService());
             var quitString = "!q";
 
+            Console.Write(">");
             string line = Console.ReadLine();
                                    
             while (line != quitString)
             {
-                //var wall = codurer.Send(line);
-                //foreach ( string wallMessage in wall)
-                //{
-                //    Console.WriteLine(wallMessage);
-                //}
+                var command = CommandFactory.GetCommand(line, codurer);
+                var commandResult = command.Execute();
+                foreach (string wallMessage in commandResult.Items)
+                {
+                    Console.WriteLine(wallMessage);
+                }
 
+                Console.Write(">");
                 line = Console.ReadLine();
             }
         }
