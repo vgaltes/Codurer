@@ -6,6 +6,7 @@
     public class User
     {
         private List<Message> messages;
+        private List<User> followers;
 
         public User()
         {
@@ -19,6 +20,14 @@
             get
             {
                 return messages;
+            }
+        }
+
+        public IEnumerable<User> Followers
+        {
+            get
+            {
+                return followers;
             }
         }
 

@@ -60,6 +60,7 @@
                 .OrderByDescending(message => message.postingTime)
                 .Select(message => message.Format());
         }
+
         public void Follow(string follower, string followed)
         {
             throw new NotImplementedException();

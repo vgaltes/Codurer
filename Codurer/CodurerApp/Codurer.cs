@@ -33,7 +33,7 @@
 
         public void Follow(string follower, string followed)
         {
-            throw new NotImplementedException();
+            userService.Follow(follower, followed);
         }
     }
 }

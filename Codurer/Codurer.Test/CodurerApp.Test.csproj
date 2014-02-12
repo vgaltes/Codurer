@@ -61,6 +61,7 @@
     <Compile Include="CodurerIntegrationTests.cs" />
     <Compile Include="CommandFactoryTests.cs" />
     <Compile Include="FollowingTests.cs" />
+    <Compile Include="InMemoryUserServiceFollowingTests.cs" />
     <Compile Include="InMemoryUserServicePostingTests.cs" />
     <Compile Include="InMemoryUserServiceReadingTests.cs" />
     <Compile Include="MessageTests.cs" />
