@@ -40,6 +40,11 @@
             userService.Post(message, user, postingTime);
         }
 
+        public IEnumerable<string> GetTimeline(string user)
+        {
+            return userService.GetMessagesFrom(user);
+        }
+
         private static string GetUserNameFromCommand(string command)
         {
             var userName =
@@ -57,11 +62,6 @@
                 message = messageSplitted[1].Trim();
 
             return message;
-        }
-
-        public IEnumerable<string> GetTimeline(string userName)
-        {
-            throw new NotImplementedException();
         }
     }
 }
