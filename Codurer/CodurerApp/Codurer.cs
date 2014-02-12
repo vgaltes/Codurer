@@ -12,26 +12,7 @@
         {
             this.userService = userService;
         }
-
-        /*public IEnumerable<string> Send(string command, DateTime postingTime)
-        {
-            var userName = GetUserNameFromCommand(command);
-            userService.AddUser(userName);
-
-            var message = GetMessageFromCommand(command);
-            if (message != string.Empty)
-                userService.Post(message, userName, postingTime);
-            else
-                return userService.GetMessagesFrom(userName);
-
-            return new List<string>();
-        }
-
-        public IEnumerable<string> Send(string command)
-        {
-            return Send(command, DateTime.Now);
-        }*/
-
+        
         public void Post(string message, string user)
         {
             DateTime postingTime = DateTime.Now;
