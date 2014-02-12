@@ -5,8 +5,8 @@
 
     public interface Command
     {
-        IEnumerable<string> Execute();
+        CommandResult Execute();
 
-        IEnumerable<string> Execute(DateTime postingTime);
+        CommandResult Execute(DateTime postingTime);
     }
 }

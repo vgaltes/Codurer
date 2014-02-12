@@ -14,13 +14,16 @@
             this.user = user;
         }
 
-        public IEnumerable<string> Execute()
+        public CommandResult Execute()
         {
-            return codurer.GetTimeline(user);
+            return new CommandResult
+            {
+                Items = codurer.GetTimeline(user)
+            };
         }
-        public IEnumerable<string> Execute(DateTime postingTime)
+        public CommandResult Execute(DateTime postingTime)
         {
-            return codurer.GetTimeline(user);
+            return Execute();
         }
     }
 }

@@ -32,10 +32,10 @@
             var bobWallCommand = CommandFactory.GetCommand("Bob", codurer);
             var bobWall = bobWallCommand.Execute();
 
-            aliceWall.Should().HaveCount(3);
-            aliceWall.First().Should().Be("Third message (1 minute ago)");
-            aliceWall.Skip(1).Take(1).First().Should().Be("Second message (4 minutes ago)");
-            aliceWall.Skip(2).Take(1).First().Should().Be("First message (5 minutes ago)");
+            aliceWall.Items.Should().HaveCount(3);
+            aliceWall.Items.First().Should().Be("Third message (1 minute ago)");
+            aliceWall.Items.Skip(1).Take(1).First().Should().Be("Second message (4 minutes ago)");
+            aliceWall.Items.Skip(2).Take(1).First().Should().Be("First message (5 minutes ago)");
         }
     }
 }

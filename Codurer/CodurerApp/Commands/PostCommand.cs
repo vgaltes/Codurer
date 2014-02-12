@@ -16,16 +16,16 @@
             this.user = user;
         }
 
-        public IEnumerable<string> Execute()
+        public CommandResult Execute()
         {
             codurer.Post(message, user);
-            return new List<string>();
+            return new CommandResult();
         }
 
-        public IEnumerable<string> Execute(DateTime postingTime)
+        public CommandResult Execute(DateTime postingTime)
         {
             codurer.Post(message, user, postingTime);
-            return new List<string>();
+            return new CommandResult();
         }
     }
 }
