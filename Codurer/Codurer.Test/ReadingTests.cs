@@ -21,7 +21,7 @@
             var messages = new ReadOnlyCollection<string>(
                             new List<string>{ message });
 
-            userService.Setup(uService => uService.GetMessagesFrom(userName)).Returns(messages);
+            userService.Setup(uService => uService.GetMessagesFormattedFrom(userName)).Returns(messages);
 
             IEnumerable<string> timeline = codurer.GetTimeline(userName);
 

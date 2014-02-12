@@ -53,7 +53,7 @@
             Post(message, userName, DateTime.Now);
         }
 
-        public IEnumerable<string> GetMessagesFrom(string userName)
+        public IEnumerable<string> GetMessagesFormattedFrom(string userName)
         {
             var currentUser = users.First(user => user.Name == userName);
             return currentUser.Messages
@@ -61,10 +61,15 @@
                 .Select(message => message.Format());
         }
 
+        public IEnumerable<Message> GetMessagesFrom(string userName)
+        {
+            throw new NotImplementedException();
+        }
+
         public void Follow(string follower, string followed)
         {
             var followedUser = users.First(user => user.Name == followed);
             followedUser.AddFollower(follower);
-        }        
+        }
     }
 }

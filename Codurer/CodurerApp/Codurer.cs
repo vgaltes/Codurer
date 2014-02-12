@@ -28,12 +28,17 @@
 
         public IEnumerable<string> GetTimeline(string user)
         {
-            return userService.GetMessagesFrom(user);
+            return userService.GetMessagesFormattedFrom(user);
         }
 
         public void Follow(string follower, string followed)
         {
             userService.Follow(follower, followed);
+        }
+
+        public IEnumerable<string> GetWall(string user)
+        {
+            throw new NotImplementedException();
         }
     }
 }

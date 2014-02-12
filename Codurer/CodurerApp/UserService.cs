@@ -11,7 +11,9 @@
 
         void Post(string message, string userName);
 
-        IEnumerable<string> GetMessagesFrom(string userName);
+        IEnumerable<string> GetMessagesFormattedFrom(string userName);
+
+        IEnumerable<Message> GetMessagesFrom(string userName);
 
         void Follow(string follower, string followed);
     }
