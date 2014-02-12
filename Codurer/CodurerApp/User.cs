@@ -6,11 +6,12 @@
     public class User
     {
         private List<Message> messages;
-        private List<User> followers;
+        private List<string> followers;
 
         public User()
         {
             messages = new List<Message>();
+            followers = new List<string>();
         }
 
         public string Name { get; set; }
@@ -23,7 +24,7 @@
             }
         }
 
-        public IEnumerable<User> Followers
+        public IEnumerable<string> Followers
         {
             get
             {
@@ -34,6 +35,11 @@
         internal void AddMessage(Message message)
         {
             messages.Add(message);
+        }
+
+        internal void AddFollower(string follower)
+        {
+            followers.Add(follower);
         }
     }
 }

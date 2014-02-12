@@ -20,7 +20,7 @@
             userService.Follow(follower, followed);
 
             userService.Users.First(user => user.Name == followed).Followers.Should().HaveCount(1);
-            userService.Users.First(user => user.Name == followed).Followers.First().Name.Should().Be(follower);
+            userService.Users.First(user => user.Name == followed).Followers.First().Should().Be(follower);
         }
     }
 }

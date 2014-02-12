@@ -63,7 +63,8 @@
 
         public void Follow(string follower, string followed)
         {
-            throw new NotImplementedException();
+            var followedUser = users.First(user => user.Name == followed);
+            followedUser.AddFollower(follower);
         }        
     }
 }
