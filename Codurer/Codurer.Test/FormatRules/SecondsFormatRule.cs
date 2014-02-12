@@ -22,11 +22,12 @@
         public string Format(string messageText, DateTime now, DateTime postingTime)
         {
             var secondsAgo = (now - postingTime).Seconds;
-            
-            if ( secondsAgo == 1)
-                return string.Format("{0} (1 second ago)", messageText, secondsAgo);
+            var secondsWord = "seconds";
 
-            return string.Format("{0} ({1} seconds ago)", messageText, secondsAgo);
+            if (secondsAgo == 1)
+                secondsWord = "second";
+
+            return string.Format("{0} ({1} {2} ago)", messageText, secondsAgo, secondsWord);
         }
     }
 }
