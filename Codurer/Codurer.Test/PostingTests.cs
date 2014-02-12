@@ -9,6 +9,8 @@
     {
         private Mock<UserService> userService;
         private Codurer codurer;
+        string user = "Alice";
+        string message = "new message";
 
         [TestInitialize]
         public void TestInitialize()
@@ -19,9 +21,7 @@
 
         [TestMethod]
         public void WhenANewUserPostAMessage_TheUserIsCreated()
-        {
-            var user = "Alice";
-            var message = "new message";
+        {            
             codurer.Post(message, user);
 
             userService.Verify(uService => uService.AddUser("Alice"));
@@ -30,8 +30,6 @@
         [TestMethod]
         public void WhenAUserPostAMessage_TheMessageIsAddedToHim()
         {
-            var user = "Alice";
-            var message = "new message";
             codurer.Post(message, user);
 
             userService.Verify(uService => uService.Post(message, user, It.IsAny<DateTime>()));
