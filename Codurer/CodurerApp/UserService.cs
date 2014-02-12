@@ -12,5 +12,7 @@
         void Post(string message, string userName);
 
         IEnumerable<string> GetMessagesFrom(string userName);
+
+        void Follow(string follower, string followed);
     }
 }

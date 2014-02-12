@@ -30,5 +30,10 @@
         {
             return userService.GetMessagesFrom(user);
         }
+
+        public void Follow(string follower, string followed)
+        {
+            throw new NotImplementedException();
+        }
     }
 }
