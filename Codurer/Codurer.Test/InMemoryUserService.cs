@@ -4,13 +4,21 @@
     using System.Collections.Generic;
     using System.Collections.ObjectModel;
     using System.Linq;
+using CodurerApp.Test.FormatRules;
 
     public class InMemoryUserService : UserService
     {
         private readonly List<User> users;
+        private readonly List<FormatRule> formatRules;
         public InMemoryUserService()
         {
             users = new List<User>();
+            formatRules = new List<FormatRule>
+            {
+                new NowFormatRule(),
+                new SecondsFormatRule(),
+                new MinutesFormatRule()
+            };
         }
 
         public IEnumerable<User> Users
@@ -38,7 +46,7 @@
         public void Post(string message, string userName, DateTime postingTime)
         {
             var currentUser = users.First(user => user.Name == userName);
-            currentUser.AddMessage(new Message(message, postingTime));
+            currentUser.AddMessage(new Message(message, postingTime, formatRules));
         }
 
         public void Post(string message, string userName)

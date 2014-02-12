@@ -6,6 +6,11 @@
     {
         public bool IsSatisfied(DateTime now, DateTime postingTime)
         {
+            return IsPostedLessThanOneSecondAgo(now, postingTime);
+        }
+
+        private static bool IsPostedLessThanOneSecondAgo(DateTime now, DateTime postingTime)
+        {
             return now - postingTime < TimeSpan.FromSeconds(1);
         }
 

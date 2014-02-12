@@ -6,7 +6,17 @@
     {
         public bool IsSatisfied(DateTime now, DateTime postingTime)
         {
-            return now - postingTime >= TimeSpan.FromMinutes(1) &&  now - postingTime < TimeSpan.FromHours(1);
+            return IsPostedMoreThanOneMinuteAgo(now, postingTime) && IsPostedLessThanOneHourAgo(now, postingTime);
+        }
+
+        private static bool IsPostedLessThanOneHourAgo(DateTime now, DateTime postingTime)
+        {
+            return now - postingTime < TimeSpan.FromHours(1);
+        }
+
+        private static bool IsPostedMoreThanOneMinuteAgo(DateTime now, DateTime postingTime)
+        {
+            return now - postingTime >= TimeSpan.FromMinutes(1);
         }
 
         public string Format(string messageText, DateTime now, DateTime postingTime)

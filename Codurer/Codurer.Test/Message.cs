@@ -10,16 +10,11 @@ using CodurerApp.Test.FormatRules;
         public DateTime postingTime;
         private List<FormatRule> formatRules;
 
-        public Message(string text, DateTime postingTime)
+        public Message(string text, DateTime postingTime, List<FormatRule> formatRules)
         {
             this.text = text;
             this.postingTime = postingTime;
-            formatRules = new List<FormatRule>
-            {
-                new NowFormatRule(),
-                new SecondsFormatRule(),
-                new MinutesFormatRule()
-            };
+            this.formatRules = formatRules;
         }
 
         internal string Format()
