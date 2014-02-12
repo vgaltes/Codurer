@@ -23,11 +23,10 @@
 
             userService.Setup(uService => uService.GetMessagesFrom(userName)).Returns(messages);
 
-            var readCommand = userName;
-            IEnumerable<string> wall = codurer.Send(readCommand, DateTime.Now);
+            IEnumerable<string> timeline = codurer.GetTimeline(userName);
 
-            wall.Should().HaveCount(1);
-            wall.First().Should().Be(message);
+            timeline.Should().HaveCount(1);
+            timeline.First().Should().Be(message);
         }
     }
 }

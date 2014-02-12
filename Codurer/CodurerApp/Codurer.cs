@@ -58,5 +58,10 @@
 
             return message;
         }
+
+        public IEnumerable<string> GetTimeline(string userName)
+        {
+            throw new NotImplementedException();
+        }
     }
 }
