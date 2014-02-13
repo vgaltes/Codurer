@@ -85,8 +85,7 @@
                 followingUsersMessages.AddRange(followingUser.Messages);
             }
 
-            return followerUser.Messages.Union(followingUsersMessages)
-                .OrderByDescending(message => message.postingTime).ToList();
+            return followingUsersMessages;
         }
     }
 }

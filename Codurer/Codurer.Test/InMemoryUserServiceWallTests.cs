@@ -24,9 +24,8 @@
             userService.Follow(alice, bob);
 
             var messages = userService.GetMessagesFromFollowingUsersFrom(alice);
-            messages.Should().HaveCount(2);
-            messages.First().Format().Should().StartWith(aliceMessage);
-            messages.Skip(1).Take(1).First().Format().Should().StartWith(bobMessage);
+            messages.Should().HaveCount(1);
+            messages.First().Format().Should().StartWith(bobMessage);
         }
     }
 }
