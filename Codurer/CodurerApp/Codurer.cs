@@ -41,7 +41,11 @@
             var currentUserTimeline = userService.GetMessagesFrom(user);
             var followingTimeline = userService.GetMessagesFromFollowingUsersFrom(user);
 
-            return null;
+            var wall = currentUserTimeline.Union(followingTimeline);
+
+            return wall
+                .OrderByDescending(message => message.PostingTime)
+                .Select(message => string.Format("{0} - {1}", message.UserName, message.Format()));
         }
     }
 }

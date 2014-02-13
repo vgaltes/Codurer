@@ -16,11 +16,13 @@
                 new MinutesFormatRule()
             };
 
+        string messageText = "message text";
+        string userName = "Alice";
+
         [TestMethod]
         public void GivenAMessagePostedLessThanOneSecondAgo_FormatReturnsTheMessagePlusNow()
         {
-            var messageText = "message text";
-            var message = new Message(messageText, DateTime.Now, formatRules);
+            var message = new Message(userName, messageText, DateTime.Now, formatRules);
 
             var result = message.Format();
 
@@ -30,8 +32,7 @@
         [TestMethod]
         public void GivenAMessagePostedMoreThanOneSecondAgoAndLessThanOneMinuteAgo_FormatReturnsTheMessagePlusSeconds()
         {
-            var messageText = "message text";
-            var message = new Message(messageText, DateTime.Now.AddSeconds(-2), formatRules);
+            var message = new Message(userName, messageText, DateTime.Now.AddSeconds(-2), formatRules);
 
             var result = message.Format();
 
@@ -41,8 +42,7 @@
         [TestMethod]
         public void GivenAMessagePostedOneSecondAgo_FormatReturnsTheMessagePlus1SecondAgo()
         {
-            var messageText = "message text";
-            var message = new Message(messageText, DateTime.Now.AddSeconds(-1), formatRules);
+            var message = new Message(userName, messageText, DateTime.Now.AddSeconds(-1), formatRules);
 
             var result = message.Format();
 
@@ -52,8 +52,7 @@
         [TestMethod]
         public void GivenAMessagePostedMoreThanOneMinutesAgoAndLessThanOneHourAgo_FormatReturnsTheMessagePlusMinutes()
         {
-            var messageText = "message text";
-            var message = new Message(messageText, DateTime.Now.AddMinutes(-2), formatRules);
+            var message = new Message(userName, messageText, DateTime.Now.AddMinutes(-2), formatRules);
 
             var result = message.Format();
 
@@ -63,8 +62,7 @@
         [TestMethod]
         public void GivenAMessagePostedOneMinuteAgo_FormatReturnsTheMessagePlus1MinuteAgo()
         {
-            var messageText = "message text";
-            var message = new Message(messageText, DateTime.Now.AddMinutes(-1), formatRules);
+            var message = new Message(userName, messageText, DateTime.Now.AddMinutes(-1), formatRules);
 
             var result = message.Format();
 

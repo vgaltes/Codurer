@@ -45,7 +45,7 @@
         public void Post(string message, string userName, DateTime postingTime)
         {
             var currentUser = users.First(user => user.Name == userName);
-            currentUser.AddMessage(new Message(message, postingTime, formatRules));
+            currentUser.AddMessage(new Message(userName, message, postingTime, formatRules));
         }
 
         public void Post(string message, string userName)
@@ -57,7 +57,7 @@
         {
             var currentUser = users.First(user => user.Name == userName);
             return currentUser.Messages
-                .OrderByDescending(message => message.postingTime)
+                .OrderByDescending(message => message.PostingTime)
                 .Select(message => message.Format());
         }
 
