@@ -37,5 +37,15 @@
 
             command.Should().BeOfType<TimelineCommand>();
         }
+
+        [TestMethod]
+        public void GetFollowCommand()
+        {
+            string commandLine = "Alice follows Bob";
+
+            Command command = CommandFactory.GetCommand(commandLine, codurer);
+
+            commandLine.Should().BeOfType<FollowCommand>();
+        }
     }
 }
