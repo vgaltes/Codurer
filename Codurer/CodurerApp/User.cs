@@ -6,12 +6,12 @@
     public class User
     {
         private List<Message> messages;
-        private List<string> followers;
+        private List<string> following;
 
         public User()
         {
             messages = new List<Message>();
-            followers = new List<string>();
+            following = new List<string>();
         }
 
         public string Name { get; set; }
@@ -24,11 +24,11 @@
             }
         }
 
-        public IEnumerable<string> Followers
+        public IEnumerable<string> Following
         {
             get
             {
-                return followers;
+                return following;
             }
         }
 
@@ -37,9 +37,9 @@
             messages.Add(message);
         }
 
-        internal void AddFollower(string follower)
+        internal void AddFollowing(string following)
         {
-            followers.Add(follower);
+            this.following.Add(following);
         }
     }
 }

@@ -69,13 +69,24 @@
 
         public void Follow(string follower, string followed)
         {
-            var followedUser = users.First(user => user.Name == followed);
-            followedUser.AddFollower(follower);
+            var followerUser = users.First(user => user.Name == follower);
+            followerUser.AddFollowing(followed);
         }
         
-        public IEnumerable<Message> GetMessagesFromFollowingUsersFrom(string user)
+        public IEnumerable<Message> GetMessagesFromFollowingUsersFrom(string userName)
         {
-            throw new NotImplementedException();
+            var followerUser = users.First(user => user.Name == userName);
+            var followingUsers = users.Where(
+                user => followerUser.Following.Any(following => following == user.Name)).ToList();
+
+            List<Message> followingUsersMessages = new List<Message>();
+            foreach ( var followingUser in followingUsers)
+            {
+                followingUsersMessages.AddRange(followingUser.Messages);
+            }
+
+            return followerUser.Messages.Union(followingUsersMessages)
+                .OrderByDescending(message => message.postingTime).ToList();
         }
     }
 }

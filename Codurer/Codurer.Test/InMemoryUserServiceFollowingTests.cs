@@ -8,7 +8,7 @@
     public class InMemoryUserServiceFollowingTests
     {
         [TestMethod]
-        public void WhenFollowingAUser_UserIsAddedToFollowersList()
+        public void WhenFollowingAUser_UserIsAddedToFollowingList()
         {
             var userService = new InMemoryUserService();
             var follower = "Alice";
@@ -19,8 +19,8 @@
 
             userService.Follow(follower, followed);
 
-            userService.Users.First(user => user.Name == followed).Followers.Should().HaveCount(1);
-            userService.Users.First(user => user.Name == followed).Followers.First().Should().Be(follower);
+            userService.Users.First(user => user.Name == follower).Following.Should().HaveCount(1);
+            userService.Users.First(user => user.Name == follower).Following.First().Should().Be(followed);
         }
     }
 }
