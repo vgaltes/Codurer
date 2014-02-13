@@ -45,7 +45,12 @@
 
             return wall
                 .OrderByDescending(message => message.PostingTime)
-                .Select(message => string.Format("{0} - {1}", message.UserName, message.Format()));
+                .Select(message => FormatMessageForWall(message));
+        }
+
+        private static string FormatMessageForWall(Message message)
+        {
+            return string.Format("{0} - {1}", message.UserName, message.Format());
         }
     }
 }
