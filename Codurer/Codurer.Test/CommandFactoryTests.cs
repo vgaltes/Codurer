@@ -45,7 +45,7 @@
 
             Command command = CommandFactory.GetCommand(commandLine, codurer);
 
-            commandLine.Should().BeOfType<FollowCommand>();
+            command.Should().BeOfType<FollowCommand>();
         }
     }
 }
