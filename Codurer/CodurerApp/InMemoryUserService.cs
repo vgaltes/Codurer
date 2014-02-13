@@ -63,13 +63,19 @@
 
         public IEnumerable<Message> GetMessagesFrom(string userName)
         {
-            throw new NotImplementedException();
+            var currentUser = users.First(user => user.Name == userName);
+            return currentUser.Messages;
         }
 
         public void Follow(string follower, string followed)
         {
             var followedUser = users.First(user => user.Name == followed);
             followedUser.AddFollower(follower);
+        }
+        
+        public IEnumerable<Message> GetMessagesFromFollowingUsersFrom(string user)
+        {
+            throw new NotImplementedException();
         }
     }
 }

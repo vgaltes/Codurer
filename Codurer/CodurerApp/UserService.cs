@@ -16,5 +16,7 @@
         IEnumerable<Message> GetMessagesFrom(string userName);
 
         void Follow(string follower, string followed);
+
+        IEnumerable<Message> GetMessagesFromFollowingUsersFrom(string user);
     }
 }

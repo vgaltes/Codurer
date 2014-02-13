@@ -38,7 +38,10 @@
 
         public IEnumerable<string> GetWall(string user)
         {
-            throw new NotImplementedException();
+            var currentUserTimeline = userService.GetMessagesFrom(user);
+            var followingTimeline = userService.GetMessagesFromFollowingUsersFrom(user);
+
+            return null;
         }
     }
 }
