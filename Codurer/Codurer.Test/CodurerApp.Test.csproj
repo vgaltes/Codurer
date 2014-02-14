@@ -59,6 +59,7 @@
   </Choose>
   <ItemGroup>
     <Compile Include="CodurerIntegrationTests.cs" />
+    <Compile Include="CommandDescriptors\TimelineCommandDescriptorTest.cs" />
     <Compile Include="CommandDescriptors\PostCommandDescriptorTest.cs" />
     <Compile Include="CommandFactoryTests.cs" />
     <Compile Include="FollowingTests.cs" />
