@@ -5,6 +5,7 @@
     using System.Linq;
     using CodurerApp.Commands;
     using FluentAssertions;
+    using Moq;
 
     [TestClass]
     public class TimelineCommandDescriptorTest
@@ -20,6 +21,15 @@
         {
             var isPostCommand = timelineCommandDescriptor.IsCommand(commandLine);
             isPostCommand.Should().BeTrue();
+        }
+
+        [TestMethod]
+        public void WhenRetrievingTheTimeline_ReturnsNewTimelineCommand()
+        {
+            var codurer = new Codurer(new Mock<UserService>().Object);
+            var timelineCommand = timelineCommandDescriptor.GetCommand(codurer, commandLine);
+
+            timelineCommand.Should().BeOfType<TimelineCommand>();
         }
     }
 }
