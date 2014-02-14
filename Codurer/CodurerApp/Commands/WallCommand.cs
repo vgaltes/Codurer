@@ -11,10 +11,10 @@ namespace CodurerApp.Commands
         private Codurer codurer;
         private string user;
 
-        public WallCommand(Codurer codurer, string user)
+        public WallCommand(Codurer codurer, string[] parameters)
         {
             this.codurer = codurer;
-            this.user = user;
+            this.user = parameters[0];
         }
 
         public CommandResult Execute()

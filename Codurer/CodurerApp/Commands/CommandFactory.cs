@@ -28,7 +28,8 @@
             else if (CommandLineParser.IsWallCommand(commandLine))
             {
                 var user = CommandLineParser.GetWallUserFrom(commandLine);
-                return new WallCommand(codurer, user);
+                string[] parameters = new string[] { user };
+                return new WallCommand(codurer, parameters);
             }
 
             throw new ArgumentException("The command line contains no valid command.");
