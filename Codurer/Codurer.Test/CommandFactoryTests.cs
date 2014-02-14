@@ -1,5 +1,6 @@
 ﻿namespace CodurerApp.Test
 {
+    using System.Collections.Generic;
     using CodurerApp.Commands;
     using FluentAssertions;
     using Microsoft.VisualStudio.TestTools.UnitTesting;
@@ -10,12 +11,14 @@
     {
         Mock<UserService> userService;
         Codurer codurer;
+        CommandFactory commandFactory;
 
         [TestInitialize]
         public void TestInitialize()
         {
             userService = new Mock<UserService>();
             codurer = new Codurer(userService.Object);
+            InitializeCommandFactory();
         }
 
         [TestMethod]
@@ -23,7 +26,7 @@
         {
             string commandLine = "Alice -> new message";            
 
-            Command command = CommandFactory.GetCommand(commandLine, codurer);
+            Command command = commandFactory.GetCommand(commandLine, codurer);
 
             command.Should().BeOfType<PostCommand>();
         }
@@ -33,7 +36,7 @@
         {
             string commandLine = "Alice";
 
-            Command command = CommandFactory.GetCommand(commandLine, codurer);
+            Command command = commandFactory.GetCommand(commandLine, codurer);
 
             command.Should().BeOfType<TimelineCommand>();
         }
@@ -43,9 +46,28 @@
         {
             string commandLine = "Alice follows Bob";
 
-            Command command = CommandFactory.GetCommand(commandLine, codurer);
+            Command command = commandFactory.GetCommand(commandLine, codurer);
 
             command.Should().BeOfType<FollowCommand>();
+        }
+
+        private void InitializeCommandFactory()
+        {
+            var codurer = new Codurer(new InMemoryUserService());
+            var postCommandDescriptor = CommandDescriptorFactory.GetPostCommandDescriptor();
+            var timelineCommandDescriptor = CommandDescriptorFactory.GetTimelineCommandDescriptor();
+            var followCommandDescriptor = CommandDescriptorFactory.GetFollowingCommandDescriptor();
+            var wallCommandDescriptor = CommandDescriptorFactory.GetWallCommandDescriptor();
+
+            var commandDescriptors = new List<CommandDescriptor>
+            {
+                postCommandDescriptor,
+                timelineCommandDescriptor,
+                followCommandDescriptor,
+                wallCommandDescriptor
+            };
+
+            commandFactory = new CommandFactory(commandDescriptors);
         }
     }
 }

@@ -4,23 +4,17 @@
     using System.Collections.Generic;
     using System.Linq;
 
-     public static class CommandFactory
+    public class CommandFactory
     {
-        public static Command GetCommand(string commandLine, Codurer codurer)
+        List<CommandDescriptor> commandDescriptors;
+
+        public CommandFactory(List<CommandDescriptor> commandDescriptors)
         {
-            var postCommandDescriptor = CommandDescriptorFactory.GetPostCommandDescriptor();
-            var timelineCommandDescriptor = CommandDescriptorFactory.GetTimelineCommandDescriptor();
-            var followCommandDescriptor = CommandDescriptorFactory.GetFollowingCommandDescriptor();
-            var wallCommandDescriptor = CommandDescriptorFactory.GetWallCommandDescriptor();
+            this.commandDescriptors = commandDescriptors;
+        }
 
-            var commandDescriptors = new List<CommandDescriptor>
-            {
-                postCommandDescriptor,
-                timelineCommandDescriptor,
-                followCommandDescriptor,
-                wallCommandDescriptor
-            };
-
+        public Command GetCommand(string commandLine, Codurer codurer)
+        {
             foreach( var commandDescriptor in commandDescriptors)
             {
                 if (commandDescriptor.IsCommand(commandLine))

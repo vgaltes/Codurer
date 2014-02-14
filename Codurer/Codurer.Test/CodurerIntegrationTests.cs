@@ -1,6 +1,7 @@
 ﻿namespace CodurerApp.Test
 {
     using System;
+    using System.Collections.Generic;
     using System.Linq;
     using CodurerApp.Commands;
     using FluentAssertions;
@@ -11,32 +12,34 @@
     {
         Codurer codurer;
         DateTime now;
+        CommandFactory commandFactory;
 
         [TestInitialize]
         public void TestInitialize()
         {
             codurer = new Codurer(new InMemoryUserService());
             now = DateTime.Now;
+            InitializeCommandFactory();
 
-            var firstAlicePostCommand = CommandFactory.GetCommand("Alice -> First message", codurer);
+            var firstAlicePostCommand = commandFactory.GetCommand("Alice -> First message", codurer);
             firstAlicePostCommand.Execute(now.AddMinutes(-5));
-            var secondAlicePostCommand = CommandFactory.GetCommand("Alice -> Second message", codurer);
+            var secondAlicePostCommand = commandFactory.GetCommand("Alice -> Second message", codurer);
             secondAlicePostCommand.Execute(now.AddMinutes(-1));
-            var thirdAlicePostCommand = CommandFactory.GetCommand("Alice -> Third message", codurer);
+            var thirdAlicePostCommand = commandFactory.GetCommand("Alice -> Third message", codurer);
             thirdAlicePostCommand.Execute(now.AddSeconds(-30));
-            var firstBobPostCommand = CommandFactory.GetCommand("Bob -> First message", codurer);
+            var firstBobPostCommand = commandFactory.GetCommand("Bob -> First message", codurer);
             firstBobPostCommand.Execute(now.AddMinutes(-4));
-            var secondBobPostCommand = CommandFactory.GetCommand("Bob -> Second message", codurer);
+            var secondBobPostCommand = commandFactory.GetCommand("Bob -> Second message", codurer);
             secondBobPostCommand.Execute(now);
         }
 
         [TestMethod]
         public void PostingAndReading()
         {
-            var aliceTimelineCommand = CommandFactory.GetCommand("Alice", codurer);
+            var aliceTimelineCommand = commandFactory.GetCommand("Alice", codurer);
             var aliceTimeline = aliceTimelineCommand.Execute();
 
-            var bobTimelineCommand = CommandFactory.GetCommand("Bob", codurer);
+            var bobTimelineCommand = commandFactory.GetCommand("Bob", codurer);
             var bobTimeline = bobTimelineCommand.Execute();
 
             aliceTimeline.Items.Should().HaveCount(3);
@@ -52,10 +55,10 @@
         [TestMethod]
         public void FollowingAndWall()
         {
-            var aliceFollowBobCommand = CommandFactory.GetCommand("Alice follows Bob", codurer);
+            var aliceFollowBobCommand = commandFactory.GetCommand("Alice follows Bob", codurer);
             aliceFollowBobCommand.Execute();
 
-            var aliceWallCommand = CommandFactory.GetCommand("Alice wall", codurer);
+            var aliceWallCommand = commandFactory.GetCommand("Alice wall", codurer);
             var aliceWall = aliceWallCommand.Execute();
 
             aliceWall.Items.Should().HaveCount(5);
@@ -64,6 +67,25 @@
             aliceWall.Items.Skip(2).Take(1).First().Should().Be("Alice - Second message (1 minute ago)");
             aliceWall.Items.Skip(3).Take(1).First().Should().Be("Bob - First message (4 minutes ago)");
             aliceWall.Items.Skip(4).Take(1).First().Should().Be("Alice - First message (5 minutes ago)");
+        }
+
+        private void InitializeCommandFactory()
+        {
+            var codurer = new Codurer(new InMemoryUserService());
+            var postCommandDescriptor = CommandDescriptorFactory.GetPostCommandDescriptor();
+            var timelineCommandDescriptor = CommandDescriptorFactory.GetTimelineCommandDescriptor();
+            var followCommandDescriptor = CommandDescriptorFactory.GetFollowingCommandDescriptor();
+            var wallCommandDescriptor = CommandDescriptorFactory.GetWallCommandDescriptor();
+
+            var commandDescriptors = new List<CommandDescriptor>
+            {
+                postCommandDescriptor,
+                timelineCommandDescriptor,
+                followCommandDescriptor,
+                wallCommandDescriptor
+            };
+            
+            commandFactory = new CommandFactory(commandDescriptors);
         }
     }
 }

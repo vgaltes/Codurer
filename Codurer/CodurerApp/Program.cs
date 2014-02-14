@@ -12,6 +12,20 @@ namespace CodurerApp
         static void Main(string[] args)
         {
             var codurer = new Codurer(new InMemoryUserService());
+            var postCommandDescriptor = CommandDescriptorFactory.GetPostCommandDescriptor();
+            var timelineCommandDescriptor = CommandDescriptorFactory.GetTimelineCommandDescriptor();
+            var followCommandDescriptor = CommandDescriptorFactory.GetFollowingCommandDescriptor();
+            var wallCommandDescriptor = CommandDescriptorFactory.GetWallCommandDescriptor();
+
+            var commandDescriptors = new List<CommandDescriptor>
+            {
+                postCommandDescriptor,
+                timelineCommandDescriptor,
+                followCommandDescriptor,
+                wallCommandDescriptor
+            };
+            var commandFactory = new CommandFactory(commandDescriptors);
+
             var quitString = "!q";
 
             Console.Write(">");
@@ -19,7 +33,7 @@ namespace CodurerApp
                                    
             while (line != quitString)
             {
-                var command = CommandFactory.GetCommand(line, codurer);
+                var command = commandFactory.GetCommand(line, codurer);
                 var commandResult = command.Execute();
                 foreach (string wallMessage in commandResult.Items)
                 {
