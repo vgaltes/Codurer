@@ -8,10 +8,10 @@
         Codurer codurer;
         string user;
 
-        public TimelineCommand(Codurer codurer, string user)
+        public TimelineCommand(Codurer codurer, string[] parameters)
         {
             this.codurer = codurer;
-            this.user = user;
+            this.user = parameters[0];
         }
 
         public CommandResult Execute()

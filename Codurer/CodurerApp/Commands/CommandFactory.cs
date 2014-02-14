@@ -15,7 +15,8 @@
             else if (CommandLineParser.IsTimelineCommand(commandLine))
             {
                 var user = CommandLineParser.GetPostingUserFrom(commandLine);
-                return new TimelineCommand(codurer, user);
+                string[] parameters = new string[] { user }; 
+                return new TimelineCommand(codurer, parameters);
             }
             else if ( CommandLineParser.IsFollowingCommand(commandLine))
             {
