@@ -49,6 +49,7 @@
     <Compile Include="Commands\FollowCommand.cs" />
     <Compile Include="Commands\PostCommand.cs" />
     <Compile Include="Commands\TimelineCommand.cs" />
+    <Compile Include="Commands\WallCommand.cs" />
     <Compile Include="FormatRules\FormatRule.cs" />
     <Compile Include="FormatRules\MinutesFormatRule.cs" />
     <Compile Include="FormatRules\NowFormatRule.cs" />

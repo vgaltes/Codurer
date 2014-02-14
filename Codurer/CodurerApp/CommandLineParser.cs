@@ -6,6 +6,7 @@
     {
         private const string postingSplitWord = "->";
         private const string followingSplitWord = "follows";
+        private const string wallSplitWord = "wall";
 
         public static string GetMessageFrom(string commandLine)
         {
@@ -32,24 +33,34 @@
             return IsThereOnlyOneWord(commandLine);
         }
 
-        private static string[] SplitCommandLine(string commandLine, string splitWord)
-        {
-            return commandLine.Split(new string[] { splitWord }, StringSplitOptions.RemoveEmptyEntries);
-        }       
-
-        private static bool IsThereOnlyOneWord(string commandLine)
-        {
-            return commandLine.IndexOf(' ') == -1;
-        }
-
         internal static string GetFollowingUserFrom(string commandLine)
         {
-            return SplitCommandLine(commandLine, followingSplitWord)[1];
+            return SplitCommandLine(commandLine, followingSplitWord)[1].Trim();
         }
 
         internal static bool IsFollowingCommand(string commandLine)
         {
             return commandLine.Contains(followingSplitWord);
+        }
+
+        internal static bool IsWallCommand(string commandLine)
+        {
+            return commandLine.Contains(wallSplitWord);
+        }
+
+        internal static string GetWallUserFrom(string commandLine)
+        {
+            return SplitCommandLine(commandLine, wallSplitWord)[0].Trim();
+        }
+
+        private static string[] SplitCommandLine(string commandLine, string splitWord)
+        {
+            return commandLine.Split(new string[] { splitWord }, StringSplitOptions.RemoveEmptyEntries);
+        }
+
+        private static bool IsThereOnlyOneWord(string commandLine)
+        {
+            return commandLine.IndexOf(' ') == -1;
         }
     }
 }

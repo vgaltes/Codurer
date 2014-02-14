@@ -22,6 +22,11 @@
                 var following = CommandLineParser.GetFollowingUserFrom(commandLine);
                 return new FollowCommand(codurer, user, following);
             }
+            else if (CommandLineParser.IsWallCommand(commandLine))
+            {
+                var user = CommandLineParser.GetWallUserFrom(commandLine);
+                return new WallCommand(codurer, user);
+            }
 
             throw new ArgumentException("The command line contains no valid command.");
         }

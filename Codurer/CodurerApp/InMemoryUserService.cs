@@ -77,7 +77,7 @@
         {
             var followerUser = users.First(user => user.Name == userName);
             var followingUsers = users.Where(
-                user => followerUser.Following.Any(following => following == user.Name)).ToList();
+                user => followerUser.Following.Contains(user.Name));
 
             List<Message> followingUsersMessages = new List<Message>();
             foreach ( var followingUser in followingUsers)

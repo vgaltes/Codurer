@@ -15,7 +15,8 @@
 
         public CommandResult Execute()
         {
-            throw new System.NotImplementedException();
+            codurer.Follow(user, following);
+            return new CommandResult();
         }
 
         public CommandResult Execute(System.DateTime postingTime)
