@@ -2,6 +2,7 @@
 {
     using Microsoft.VisualStudio.TestTools.UnitTesting;
     using System;
+    using System.Linq;
     using CodurerApp.Commands;
     using FluentAssertions;
     using Moq;
@@ -11,7 +12,10 @@
     {
         CommandDescriptor<PostCommand> postCommandDescriptor = new CommandDescriptor<PostCommand>(
                 commandLine => commandLine.Contains("->"),
-                commandLine => commandLine.Split(new string[] { "->" }, StringSplitOptions.RemoveEmptyEntries));
+                commandLine => commandLine
+                    .Split(new string[] { "->" }, StringSplitOptions.RemoveEmptyEntries)
+                    .Select(parameter => parameter.Trim())
+                    .ToArray<string>());
 
         string commandLine = "Alice -> new message";
 
