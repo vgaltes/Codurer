@@ -1,12 +1,12 @@
 ﻿namespace CodurerApp.Test
 {
+    using System.Collections.Generic;
+    using System.Collections.ObjectModel;
+    using System.Linq;
+    using CodurerApp.Services;
+    using FluentAssertions;
     using Microsoft.VisualStudio.TestTools.UnitTesting;
     using Moq;
-    using FluentAssertions;
-    using System;
-    using System.Collections.Generic;
-    using System.Linq;
-    using System.Collections.ObjectModel;
 
     [TestClass]
     public class ReadingTests

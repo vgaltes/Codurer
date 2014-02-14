@@ -1,8 +1,9 @@
 ﻿namespace CodurerApp.Test
 {
-    using Microsoft.VisualStudio.TestTools.UnitTesting;
-    using FluentAssertions;
     using System.Linq;
+    using CodurerApp.Services;
+    using FluentAssertions;
+    using Microsoft.VisualStudio.TestTools.UnitTesting;
 
     [TestClass]
     public class InMemoryUserServicePostingTests

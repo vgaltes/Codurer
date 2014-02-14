@@ -2,6 +2,7 @@
 {
     using System.Collections.Generic;
     using CodurerApp.Commands;
+    using CodurerApp.Services;
     using FluentAssertions;
     using Microsoft.VisualStudio.TestTools.UnitTesting;
     using Moq;
@@ -54,17 +55,13 @@
         private void InitializeCommandFactory()
         {
             var codurer = new Codurer(new InMemoryUserService());
-            var postCommandDescriptor = CommandDescriptorFactory.GetPostCommandDescriptor();
-            var timelineCommandDescriptor = CommandDescriptorFactory.GetTimelineCommandDescriptor();
-            var followCommandDescriptor = CommandDescriptorFactory.GetFollowingCommandDescriptor();
-            var wallCommandDescriptor = CommandDescriptorFactory.GetWallCommandDescriptor();
-
+            
             var commandDescriptors = new List<CommandDescriptor>
             {
-                postCommandDescriptor,
-                timelineCommandDescriptor,
-                followCommandDescriptor,
-                wallCommandDescriptor
+                CommandDescriptorFactory.GetPostCommandDescriptor(),
+                CommandDescriptorFactory.GetTimelineCommandDescriptor(),
+                CommandDescriptorFactory.GetFollowingCommandDescriptor(),
+                CommandDescriptorFactory.GetWallCommandDescriptor()
             };
 
             commandFactory = new CommandFactory(commandDescriptors);

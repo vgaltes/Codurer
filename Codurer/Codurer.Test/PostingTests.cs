@@ -1,6 +1,7 @@
 ﻿namespace CodurerApp.Test
 {
     using System;
+    using CodurerApp.Services;
     using Microsoft.VisualStudio.TestTools.UnitTesting;
     using Moq;
 

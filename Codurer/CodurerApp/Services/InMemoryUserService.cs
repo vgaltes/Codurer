@@ -1,9 +1,10 @@
-﻿namespace CodurerApp
+﻿namespace CodurerApp.Services
 {
     using System;
     using System.Collections.Generic;
     using System.Linq;
     using CodurerApp.FormatRules;
+    using CodurerApp.Models;
 
     public class InMemoryUserService : UserService
     {

@@ -1,10 +1,11 @@
 ﻿namespace CodurerApp.Test.CommandDescriptors
 {
-    using Microsoft.VisualStudio.TestTools.UnitTesting;
     using System;
     using System.Linq;
     using CodurerApp.Commands;
+    using CodurerApp.Services;
     using FluentAssertions;
+    using Microsoft.VisualStudio.TestTools.UnitTesting;
     using Moq;
 
     [TestClass]

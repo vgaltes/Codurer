@@ -55,12 +55,12 @@
     <Compile Include="FormatRules\MinutesFormatRule.cs" />
     <Compile Include="FormatRules\NowFormatRule.cs" />
     <Compile Include="FormatRules\SecondsFormatRule.cs" />
-    <Compile Include="InMemoryUserService.cs" />
-    <Compile Include="Message.cs" />
+    <Compile Include="Services\InMemoryUserService.cs" />
+    <Compile Include="Models\Message.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="User.cs" />
-    <Compile Include="UserService.cs" />
+    <Compile Include="Models\User.cs" />
+    <Compile Include="Services\UserService.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />

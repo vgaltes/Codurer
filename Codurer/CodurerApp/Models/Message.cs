@@ -1,4 +1,4 @@
-﻿namespace CodurerApp
+﻿namespace CodurerApp.Models
 {
     using System;
     using System.Collections.Generic;

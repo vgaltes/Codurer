@@ -1,12 +1,13 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using CodurerApp.Commands;
-
-namespace CodurerApp
+﻿namespace CodurerApp
 {
+    using System;
+    using System.Collections.Generic;
+    using System.Linq;
+    using System.Text;
+    using System.Threading.Tasks;
+    using CodurerApp.Commands;
+    using CodurerApp.Services;
+
     class Program
     {
         static void Main(string[] args)
@@ -34,17 +35,12 @@ namespace CodurerApp
 
         private static CommandFactory InitializeCommandFactory()
         {
-            var postCommandDescriptor = CommandDescriptorFactory.GetPostCommandDescriptor();
-            var timelineCommandDescriptor = CommandDescriptorFactory.GetTimelineCommandDescriptor();
-            var followCommandDescriptor = CommandDescriptorFactory.GetFollowingCommandDescriptor();
-            var wallCommandDescriptor = CommandDescriptorFactory.GetWallCommandDescriptor();
-
             var commandDescriptors = new List<CommandDescriptor>
             {
-                postCommandDescriptor,
-                timelineCommandDescriptor,
-                followCommandDescriptor,
-                wallCommandDescriptor
+                CommandDescriptorFactory.GetPostCommandDescriptor(),
+                CommandDescriptorFactory.GetTimelineCommandDescriptor(),
+                CommandDescriptorFactory.GetFollowingCommandDescriptor(),
+                CommandDescriptorFactory.GetWallCommandDescriptor()
             };
             var commandFactory = new CommandFactory(commandDescriptors);
             return commandFactory;

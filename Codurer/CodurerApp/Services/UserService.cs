@@ -1,7 +1,8 @@
-﻿namespace CodurerApp
+﻿namespace CodurerApp.Services
 {
     using System;
     using System.Collections.Generic;
+    using CodurerApp.Models;
 
     public interface UserService
     {

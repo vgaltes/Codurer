@@ -2,6 +2,7 @@
 {
     using System;
     using System.Linq;
+    using CodurerApp.Services;
     using FluentAssertions;
     using Microsoft.VisualStudio.TestTools.UnitTesting;
 

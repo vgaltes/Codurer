@@ -1,8 +1,8 @@
 ﻿namespace CodurerApp.Test
 {
+    using CodurerApp.Services;
     using Microsoft.VisualStudio.TestTools.UnitTesting;
     using Moq;
-    using FluentAssertions;
 
     [TestClass]
     public class FollowingTests

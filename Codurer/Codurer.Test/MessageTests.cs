@@ -1,10 +1,11 @@
 ﻿namespace CodurerApp.Test
 {
-    using FluentAssertions;
     using System;
-    using Microsoft.VisualStudio.TestTools.UnitTesting;
     using System.Collections.Generic;
     using CodurerApp.FormatRules;
+    using CodurerApp.Models;
+    using FluentAssertions;
+    using Microsoft.VisualStudio.TestTools.UnitTesting;
 
     [TestClass]
     public class MessageTests
