@@ -37,13 +37,6 @@
             {
                 return followCommandDescriptor.GetCommand(codurer, commandLine);
             }
-            else if ( CommandLineParser.IsFollowingCommand(commandLine))
-            {
-                var user = CommandLineParser.GetFollowerUserFrom(commandLine);
-                var following = CommandLineParser.GetFollowingUserFrom(commandLine);
-                string[] parameters = new string[] { user, following };
-                return new FollowCommand(codurer, parameters);
-            }
             else if (CommandLineParser.IsWallCommand(commandLine))
             {
                 var user = CommandLineParser.GetWallUserFrom(commandLine);
