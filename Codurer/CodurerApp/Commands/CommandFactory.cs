@@ -18,6 +18,13 @@
                 cLine => cLine.Split(new string[] { " " }, StringSplitOptions.RemoveEmptyEntries).Count() == 1,
                 cLine => new string[] { cLine });
 
+            CommandDescriptor<FollowCommand> followCommandDescriptor = new CommandDescriptor<FollowCommand>(
+                cLine => cLine.Contains("follows"),
+                cLine => cLine
+                    .Split(new string[] { "follows" }, StringSplitOptions.RemoveEmptyEntries)
+                    .Select(parameter => parameter.Trim())
+                    .ToArray<string>());
+
             if ( postCommandDescriptor.IsCommand(commandLine))
             {
                 return postCommandDescriptor.GetCommand(codurer, commandLine);
@@ -25,6 +32,10 @@
             else if ( timelineCommandDescriptor.IsCommand(commandLine))
             {
                 return timelineCommandDescriptor.GetCommand(codurer, commandLine);
+            }
+            else if ( followCommandDescriptor.IsCommand(commandLine))
+            {
+                return followCommandDescriptor.GetCommand(codurer, commandLine);
             }
             else if ( CommandLineParser.IsFollowingCommand(commandLine))
             {
