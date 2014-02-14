@@ -1,13 +1,14 @@
 ﻿namespace CodurerApp.Commands
 {
     using System;
+    using System.Linq;
 
-    public class CommandDescriptor<T>
+    public class CommandDescriptor<T> where T: Command
     {
         Func<string, bool> conditionEvaluation;
         Func<string, string[]> parametersExtraction;
         
-        public CommandDescriptor(Func<string, bool> conditionEvaluation, 
+        public CommandDescriptor( Func<string, bool> conditionEvaluation, 
                                     Func<string, string[]> parametersExtraction)
         {
             this.conditionEvaluation = conditionEvaluation;
@@ -19,9 +20,11 @@
             return conditionEvaluation(commandLine);
         }
 
-        public Command GetCommand()
+        public T GetCommand(Codurer codurer, string commandLine)
         {
-            throw new NotImplementedException();
+            string[] parameters = parametersExtraction(commandLine);
+            object[] constructorParameters = new object[] { codurer, parameters.ToArray<string>() };
+            return (T)Activator.CreateInstance(typeof(T), constructorParameters);            
         }
     }
 }
