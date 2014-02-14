@@ -22,7 +22,8 @@
             {
                 var user = CommandLineParser.GetFollowerUserFrom(commandLine);
                 var following = CommandLineParser.GetFollowingUserFrom(commandLine);
-                return new FollowCommand(codurer, user, following);
+                string[] parameters = new string[] { user, following };
+                return new FollowCommand(codurer, parameters);
             }
             else if (CommandLineParser.IsWallCommand(commandLine))
             {

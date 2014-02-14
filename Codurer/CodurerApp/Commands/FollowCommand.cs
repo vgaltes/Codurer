@@ -6,11 +6,11 @@
         private string user;
         private string following;
 
-        public FollowCommand(Codurer codurer, string user, string following)
+        public FollowCommand(Codurer codurer, string[] parameters)
         {
             this.codurer = codurer;
-            this.user = user;
-            this.following = following;
+            this.user = parameters[0];
+            this.following = parameters[1];
         }
 
         public CommandResult Execute()
