@@ -18,5 +18,10 @@
         {
             return conditionEvaluation(commandLine);
         }
+
+        public Command GetCommand()
+        {
+            throw new NotImplementedException();
+        }
     }
 }
