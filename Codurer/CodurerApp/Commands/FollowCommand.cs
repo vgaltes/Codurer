@@ -21,7 +21,7 @@
 
         public CommandResult Execute(System.DateTime postingTime)
         {
-            throw new System.NotImplementedException();
+            return Execute();
         }
     }
 }

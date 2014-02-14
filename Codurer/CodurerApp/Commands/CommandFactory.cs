@@ -9,7 +9,8 @@
             {
                 var user = CommandLineParser.GetPostingUserFrom(commandLine);
                 var message = CommandLineParser.GetMessageFrom(commandLine);
-                return new PostCommand(codurer, message, user);
+                string[] parameters = new string[] { message, user };
+                return new PostCommand(codurer, parameters);
             }
             else if (CommandLineParser.IsTimelineCommand(commandLine))
             {

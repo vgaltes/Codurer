@@ -27,7 +27,7 @@ namespace CodurerApp.Commands
 
         public CommandResult Execute(DateTime postingTime)
         {
-            throw new NotImplementedException();
+            return Execute();
         }
     }
 }

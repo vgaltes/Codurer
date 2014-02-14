@@ -9,11 +9,11 @@
         string message;
         string user;
 
-        public PostCommand(Codurer codurer, string message, string user)
+        public PostCommand(Codurer codurer, string[] parameters)
         {
             this.codurer = codurer;
-            this.message = message;
-            this.user = user;
+            this.message = parameters[0];
+            this.user = parameters[1];
         }
 
         public CommandResult Execute()
