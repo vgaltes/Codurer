@@ -33,21 +33,18 @@
                     .Select(parameter => parameter.Trim())
                     .ToArray<string>());
 
-            if ( postCommandDescriptor.IsCommand(commandLine))
+            var commandDescriptors = new List<CommandDescriptor>
             {
-                return postCommandDescriptor.GetCommand(codurer, commandLine);
-            }
-            else if ( timelineCommandDescriptor.IsCommand(commandLine))
+                postCommandDescriptor,
+                timelineCommandDescriptor,
+                followCommandDescriptor,
+                wallCommandDescriptor
+            };
+
+            foreach( var commandDescriptor in commandDescriptors)
             {
-                return timelineCommandDescriptor.GetCommand(codurer, commandLine);
-            }
-            else if ( followCommandDescriptor.IsCommand(commandLine))
-            {
-                return followCommandDescriptor.GetCommand(codurer, commandLine);
-            }
-            else if ( wallCommandDescriptor.IsCommand(commandLine))
-            {
-                return wallCommandDescriptor.GetCommand(codurer, commandLine);
+                if (commandDescriptor.IsCommand(commandLine))
+                    return commandDescriptor.GetCommand(codurer, commandLine);
             }
 
             throw new ArgumentException("The command line contains no valid command.");
