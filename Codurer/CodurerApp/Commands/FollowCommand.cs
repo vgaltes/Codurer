@@ -12,6 +12,7 @@
             this.user = user;
             this.following = following;
         }
+
         public CommandResult Execute()
         {
             throw new System.NotImplementedException();
