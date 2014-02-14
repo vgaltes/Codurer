@@ -44,6 +44,7 @@
     <Compile Include="Codurer.cs" />
     <Compile Include="CommandLineParser.cs" />
     <Compile Include="Commands\Command.cs" />
+    <Compile Include="Commands\CommandDescriptor.cs" />
     <Compile Include="Commands\CommandFactory.cs" />
     <Compile Include="Commands\CommandResult.cs" />
     <Compile Include="Commands\FollowCommand.cs" />
