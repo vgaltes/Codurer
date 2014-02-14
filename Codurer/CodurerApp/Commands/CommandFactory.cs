@@ -1,18 +1,24 @@
 ﻿namespace CodurerApp.Commands
 {
     using System;
+    using System.Linq;
+
     public static class CommandFactory
     {
         public static Command GetCommand(string commandLine, Codurer codurer)
         {
-            if (CommandLineParser.IsPostCommand(commandLine))
+            CommandDescriptor<PostCommand> postCommandDescriptor = new CommandDescriptor<PostCommand>(
+                cLine => cLine.Contains("->"),
+                cLine => cLine
+                    .Split(new string[] { "->" }, StringSplitOptions.RemoveEmptyEntries)
+                    .Select(parameter => parameter.Trim())
+                    .ToArray<string>());
+
+            if ( postCommandDescriptor.IsCommand(commandLine))
             {
-                var user = CommandLineParser.GetPostingUserFrom(commandLine);
-                var message = CommandLineParser.GetMessageFrom(commandLine);
-                string[] parameters = new string[] { message, user };
-                return new PostCommand(codurer, parameters);
+                return postCommandDescriptor.GetCommand(codurer, commandLine);
             }
-            else if (CommandLineParser.IsTimelineCommand(commandLine))
+            if (CommandLineParser.IsTimelineCommand(commandLine))
             {
                 var user = CommandLineParser.GetPostingUserFrom(commandLine);
                 string[] parameters = new string[] { user }; 
