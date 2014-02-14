@@ -10,7 +10,7 @@
     [TestClass]
     public class TimelineCommandDescriptorTest
     {
-        CommandDescriptor<TimelineCommand> timelineCommandDescriptor = new CommandDescriptor<TimelineCommand>(
+        CommandDescriptor timelineCommandDescriptor = new CommandDescriptor(typeof(TimelineCommand),
                 commandLine => commandLine.Split(new string[]{" "}, StringSplitOptions.RemoveEmptyEntries).Count() == 1,
                 commandLine => new string[] { commandLine });
 

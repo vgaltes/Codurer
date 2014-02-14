@@ -10,7 +10,7 @@
     [TestClass]
     public class FollowCommandDescriptorTest
     {
-        CommandDescriptor<FollowCommand> followCommandDescriptor = new CommandDescriptor<FollowCommand>(
+        CommandDescriptor followCommandDescriptor = new CommandDescriptor(typeof(FollowCommand),
                 commandLine => commandLine.Contains("follows"),
                 commandLine => commandLine
                     .Split(new string[] { "follows" }, StringSplitOptions.RemoveEmptyEntries)

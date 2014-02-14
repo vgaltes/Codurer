@@ -10,7 +10,7 @@
     [TestClass]
     public class PostCommandDescriptorTest
     {
-        CommandDescriptor<PostCommand> postCommandDescriptor = new CommandDescriptor<PostCommand>(
+        CommandDescriptor postCommandDescriptor = new CommandDescriptor(typeof(PostCommand),
                 commandLine => commandLine.Contains("->"),
                 commandLine => commandLine
                     .Split(new string[] { "->" }, StringSplitOptions.RemoveEmptyEntries)

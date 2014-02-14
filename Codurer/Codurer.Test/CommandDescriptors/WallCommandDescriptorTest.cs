@@ -10,7 +10,7 @@
     [TestClass]
     public class WallCommandDescriptorTest
     {
-        CommandDescriptor<WallCommand> wallCommandDescriptor = new CommandDescriptor<WallCommand>(
+        CommandDescriptor wallCommandDescriptor = new CommandDescriptor(typeof(WallCommand),
                 commandLine => commandLine.Contains("wall"),
                 commandLine => commandLine
                     .Split(new string[] { "wall" }, StringSplitOptions.RemoveEmptyEntries)

@@ -3,14 +3,17 @@
     using System;
     using System.Linq;
 
-    public class CommandDescriptor<T> where T: Command
+    public class CommandDescriptor
     {
         Func<string, bool> conditionEvaluation;
         Func<string, string[]> parametersExtraction;
+        Type commandType;
         
-        public CommandDescriptor( Func<string, bool> conditionEvaluation, 
+        public CommandDescriptor( Type commandType,
+                                    Func<string, bool> conditionEvaluation, 
                                     Func<string, string[]> parametersExtraction)
         {
+            this.commandType = commandType;
             this.conditionEvaluation = conditionEvaluation;
             this.parametersExtraction = parametersExtraction;
         }
@@ -20,11 +23,11 @@
             return conditionEvaluation(commandLine);
         }
 
-        public T GetCommand(Codurer codurer, string commandLine)
+        public Command GetCommand(Codurer codurer, string commandLine)
         {
             string[] parameters = parametersExtraction(commandLine);
             object[] constructorParameters = new object[] { codurer, parameters.ToArray<string>() };
-            return (T)Activator.CreateInstance(typeof(T), constructorParameters);            
+            return (Command) Activator.CreateInstance(commandType, constructorParameters);            
         }
     }
 }
