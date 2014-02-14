@@ -14,15 +14,17 @@
                     .Select(parameter => parameter.Trim())
                     .ToArray<string>());
 
+            CommandDescriptor<TimelineCommand> timelineCommandDescriptor = new CommandDescriptor<TimelineCommand>(
+                cLine => cLine.Split(new string[] { " " }, StringSplitOptions.RemoveEmptyEntries).Count() == 1,
+                cLine => new string[] { cLine });
+
             if ( postCommandDescriptor.IsCommand(commandLine))
             {
                 return postCommandDescriptor.GetCommand(codurer, commandLine);
             }
-            if (CommandLineParser.IsTimelineCommand(commandLine))
+            else if ( timelineCommandDescriptor.IsCommand(commandLine))
             {
-                var user = CommandLineParser.GetPostingUserFrom(commandLine);
-                string[] parameters = new string[] { user }; 
-                return new TimelineCommand(codurer, parameters);
+                return timelineCommandDescriptor.GetCommand(codurer, commandLine);
             }
             else if ( CommandLineParser.IsFollowingCommand(commandLine))
             {
