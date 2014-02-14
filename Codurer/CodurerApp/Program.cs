@@ -12,20 +12,7 @@ namespace CodurerApp
         static void Main(string[] args)
         {
             var codurer = new Codurer(new InMemoryUserService());
-            var postCommandDescriptor = CommandDescriptorFactory.GetPostCommandDescriptor();
-            var timelineCommandDescriptor = CommandDescriptorFactory.GetTimelineCommandDescriptor();
-            var followCommandDescriptor = CommandDescriptorFactory.GetFollowingCommandDescriptor();
-            var wallCommandDescriptor = CommandDescriptorFactory.GetWallCommandDescriptor();
-
-            var commandDescriptors = new List<CommandDescriptor>
-            {
-                postCommandDescriptor,
-                timelineCommandDescriptor,
-                followCommandDescriptor,
-                wallCommandDescriptor
-            };
-            var commandFactory = new CommandFactory(commandDescriptors);
-
+            var commandFactory = InitializeCommandFactory();
             var quitString = "!q";
 
             Console.Write(">");
@@ -43,6 +30,24 @@ namespace CodurerApp
                 Console.Write(">");
                 line = Console.ReadLine();
             }
+        }
+
+        private static CommandFactory InitializeCommandFactory()
+        {
+            var postCommandDescriptor = CommandDescriptorFactory.GetPostCommandDescriptor();
+            var timelineCommandDescriptor = CommandDescriptorFactory.GetTimelineCommandDescriptor();
+            var followCommandDescriptor = CommandDescriptorFactory.GetFollowingCommandDescriptor();
+            var wallCommandDescriptor = CommandDescriptorFactory.GetWallCommandDescriptor();
+
+            var commandDescriptors = new List<CommandDescriptor>
+            {
+                postCommandDescriptor,
+                timelineCommandDescriptor,
+                followCommandDescriptor,
+                wallCommandDescriptor
+            };
+            var commandFactory = new CommandFactory(commandDescriptors);
+            return commandFactory;
         }
     }
 }
