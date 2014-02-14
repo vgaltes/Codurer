@@ -25,6 +25,13 @@
                     .Select(parameter => parameter.Trim())
                     .ToArray<string>());
 
+            CommandDescriptor<WallCommand> wallCommandDescriptor = new CommandDescriptor<WallCommand>(
+                cLine => cLine.Contains("wall"),
+                cLine => cLine
+                    .Split(new string[] { "wall" }, StringSplitOptions.RemoveEmptyEntries)
+                    .Select(parameter => parameter.Trim())
+                    .ToArray<string>());
+
             if ( postCommandDescriptor.IsCommand(commandLine))
             {
                 return postCommandDescriptor.GetCommand(codurer, commandLine);
@@ -37,11 +44,9 @@
             {
                 return followCommandDescriptor.GetCommand(codurer, commandLine);
             }
-            else if (CommandLineParser.IsWallCommand(commandLine))
+            else if ( wallCommandDescriptor.IsCommand(commandLine))
             {
-                var user = CommandLineParser.GetWallUserFrom(commandLine);
-                string[] parameters = new string[] { user };
-                return new WallCommand(codurer, parameters);
+                return wallCommandDescriptor.GetCommand(codurer, commandLine);
             }
 
             throw new ArgumentException("The command line contains no valid command.");
