@@ -25,5 +25,14 @@
             var isWallCommand = wallCommandDescriptor.IsCommand(commandLine);
             isWallCommand.Should().BeTrue();
         }
+
+        [TestMethod]
+        public void WhenRetrievingTheWall_ReturnsNewWallCommand()
+        {
+            var codurer = new Codurer(new Mock<UserService>().Object);
+            var postCommand = wallCommandDescriptor.GetCommand(codurer, commandLine);
+
+            postCommand.Should().BeOfType<WallCommand>();
+        }
     }
 }
