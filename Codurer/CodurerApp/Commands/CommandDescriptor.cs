@@ -16,7 +16,7 @@
 
         public bool IsCommand(string commandLine)
         {
-            throw new NotImplementedException();
+            return conditionEvaluation(commandLine);
         }
     }
 }
