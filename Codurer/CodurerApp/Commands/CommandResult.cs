@@ -6,9 +6,9 @@
     {
         public CommandResult()
         {
-            Items = new List<string>();
+            Messages = new List<string>();
         }
 
-        public IEnumerable<string> Items {get;set;}
+        public IEnumerable<string> Messages {get;set;}
     }
 }

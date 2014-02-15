@@ -54,8 +54,6 @@
 
         private void InitializeCommandFactory()
         {
-            var codurer = new Codurer(new InMemoryUserService());
-            
             var commandDescriptors = new List<CommandDescriptor>
             {
                 CommandDescriptorFactory.GetPostCommandDescriptor(),

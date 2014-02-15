@@ -6,14 +6,14 @@
     using Microsoft.VisualStudio.TestTools.UnitTesting;
 
     [TestClass]
-    public class InMemoryUserServicePostingTests
+    public class InMemoryUserServicePostingTests : InMemoryUserServiceTest
     {
         private InMemoryUserService userService;
 
         [TestInitialize]
         public void TestInitialize()
         {
-            userService = new InMemoryUserService();
+            userService = GetUserService();
         }
 
         [TestMethod]

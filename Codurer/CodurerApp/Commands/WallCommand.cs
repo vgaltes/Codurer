@@ -21,7 +21,7 @@ namespace CodurerApp.Commands
         {
             return new CommandResult
             {
-                Items = codurer.GetWall(user)
+                Messages = codurer.GetWall(user)
             };
         }
 

@@ -7,12 +7,12 @@
     using Microsoft.VisualStudio.TestTools.UnitTesting;
 
     [TestClass]
-    public class InMemoryUserServiceWallTests
+    public class InMemoryUserServiceWallTests : InMemoryUserServiceTest
     {
         [TestMethod]
         public void GivenBobAndAliceHavePostedMessagesAndBobFollowsAlice_WhenRetrievingMessagesFromPeopleBobFollows_TheMessagesFromBothAreReturedInInverseChronologicalOrder()
         {
-            var userService = new InMemoryUserService();
+            var userService = GetUserService();
             var bob = "Bob";
             userService.AddUser(bob);
             var alice = "Alice";

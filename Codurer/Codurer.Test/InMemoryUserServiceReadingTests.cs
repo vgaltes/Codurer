@@ -7,12 +7,12 @@
     using Microsoft.VisualStudio.TestTools.UnitTesting;
 
     [TestClass]
-    public class InMemoryUserServiceReadingTests
+    public class InMemoryUserServiceReadingTests : InMemoryUserServiceTest
     {
         [TestMethod]
         public void GivenBobHasPostedTwoMessages_WhenRetrievingMessages_TheMessagesAreReturedInInverseChronologicalOrder()
         {
-            var userService = new InMemoryUserService();
+            var userService = GetUserService();
             userService.AddUser("Bob");
             var message1 = "message1";
             var message2 = "message2";

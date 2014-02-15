@@ -10,15 +10,11 @@
     {
         private readonly List<User> users;
         private readonly List<FormatRule> formatRules;
-        public InMemoryUserService()
+
+        public InMemoryUserService(List<FormatRule> formatRules)
         {
             users = new List<User>();
-            formatRules = new List<FormatRule>
-            {
-                new NowFormatRule(),
-                new SecondsFormatRule(),
-                new MinutesFormatRule()
-            };
+            this.formatRules = formatRules;
         }
 
         public IEnumerable<User> Users

@@ -6,14 +6,16 @@
     using System.Text;
     using System.Threading.Tasks;
     using CodurerApp.Commands;
+    using CodurerApp.FormatRules;
     using CodurerApp.Services;
 
     class Program
     {
         static void Main(string[] args)
         {
-            var codurer = new Codurer(new InMemoryUserService());
+            var userService = UserServiceFactory.GetInMemoryUserService();
             var commandFactory = InitializeCommandFactory();
+            var codurer = new Codurer(userService);
             var quitString = "!q";
 
             Console.Write(">");
@@ -23,7 +25,7 @@
             {
                 var command = commandFactory.GetCommand(line, codurer);
                 var commandResult = command.Execute();
-                foreach (string wallMessage in commandResult.Items)
+                foreach (string wallMessage in commandResult.Messages)
                 {
                     Console.WriteLine(wallMessage);
                 }

@@ -18,7 +18,7 @@
         {
             return new CommandResult
             {
-                Items = codurer.GetTimeline(user)
+                Messages = codurer.GetTimeline(user)
             };
         }
         public CommandResult Execute(DateTime postingTime)

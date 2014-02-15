@@ -6,12 +6,12 @@
     using Microsoft.VisualStudio.TestTools.UnitTesting;
 
     [TestClass]
-    public class InMemoryUserServiceFollowingTests
+    public class InMemoryUserServiceFollowingTests : InMemoryUserServiceTest
     {
         [TestMethod]
         public void WhenFollowingAUser_UserIsAddedToFollowingList()
         {
-            var userService = new InMemoryUserService();
+            var userService = GetUserService();
             var follower = "Alice";
             var followed = "Bob";
 

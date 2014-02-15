@@ -4,6 +4,7 @@
     using System.Collections.Generic;
     using System.Linq;
     using CodurerApp.Commands;
+    using CodurerApp.FormatRules;
     using CodurerApp.Services;
     using FluentAssertions;
     using Microsoft.VisualStudio.TestTools.UnitTesting;
@@ -18,7 +19,7 @@
         [TestInitialize]
         public void TestInitialize()
         {
-            codurer = new Codurer(new InMemoryUserService());
+            codurer = new Codurer(UserServiceFactory.GetInMemoryUserService());
             now = DateTime.Now;
             InitializeCommandFactory();
 
@@ -48,8 +49,6 @@
 
         private void InitializeCommandFactory()
         {
-            var codurer = new Codurer(new InMemoryUserService());
-
             var commandDescriptors = new List<CommandDescriptor>
             {
                 CommandDescriptorFactory.GetPostCommandDescriptor(),
@@ -95,27 +94,27 @@
 
         private static void AssertBobTimelineIsCorrect(CommandResult bobTimeline)
         {
-            bobTimeline.Items.Should().HaveCount(2);
-            bobTimeline.Items.First().Should().Be("Second message (now)");
-            bobTimeline.Items.Skip(1).Take(1).First().Should().Be("First message (4 minutes ago)");
+            bobTimeline.Messages.Should().HaveCount(2);
+            bobTimeline.Messages.First().Should().Be("Second message (now)");
+            bobTimeline.Messages.Skip(1).Take(1).First().Should().Be("First message (4 minutes ago)");
         }
 
         private static void AssertAliceTimelineIsCorrect(CommandResult aliceTimeline)
         {
-            aliceTimeline.Items.Should().HaveCount(3);
-            aliceTimeline.Items.First().Should().Be("Third message (30 seconds ago)");
-            aliceTimeline.Items.Skip(1).Take(1).First().Should().Be("Second message (1 minute ago)");
-            aliceTimeline.Items.Skip(2).Take(1).First().Should().Be("First message (5 minutes ago)");
+            aliceTimeline.Messages.Should().HaveCount(3);
+            aliceTimeline.Messages.First().Should().Be("Third message (30 seconds ago)");
+            aliceTimeline.Messages.Skip(1).Take(1).First().Should().Be("Second message (1 minute ago)");
+            aliceTimeline.Messages.Skip(2).Take(1).First().Should().Be("First message (5 minutes ago)");
         }
 
         private static void AssertAliceWallIsCorrect(CommandResult aliceWall)
         {
-            aliceWall.Items.Should().HaveCount(5);
-            aliceWall.Items.First().Should().Be("Bob - Second message (now)");
-            aliceWall.Items.Skip(1).Take(1).First().Should().Be("Alice - Third message (30 seconds ago)");
-            aliceWall.Items.Skip(2).Take(1).First().Should().Be("Alice - Second message (1 minute ago)");
-            aliceWall.Items.Skip(3).Take(1).First().Should().Be("Bob - First message (4 minutes ago)");
-            aliceWall.Items.Skip(4).Take(1).First().Should().Be("Alice - First message (5 minutes ago)");
+            aliceWall.Messages.Should().HaveCount(5);
+            aliceWall.Messages.First().Should().Be("Bob - Second message (now)");
+            aliceWall.Messages.Skip(1).Take(1).First().Should().Be("Alice - Third message (30 seconds ago)");
+            aliceWall.Messages.Skip(2).Take(1).First().Should().Be("Alice - Second message (1 minute ago)");
+            aliceWall.Messages.Skip(3).Take(1).First().Should().Be("Bob - First message (4 minutes ago)");
+            aliceWall.Messages.Skip(4).Take(1).First().Should().Be("Alice - First message (5 minutes ago)");
         }
 
         private CommandResult GetAliceWall()
@@ -130,7 +129,5 @@
             var aliceFollowBobCommand = commandFactory.GetCommand("Alice follows Bob", codurer);
             aliceFollowBobCommand.Execute();
         }
-
-
     }
 }
