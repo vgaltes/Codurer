@@ -3,31 +3,23 @@
     using System;
     using System.Linq;
 
-    public class CommandDescriptor
+    public interface CommandDescriptor
     {
-        Func<string, bool> conditionEvaluation;
-        Func<string, string[]> parametersExtraction;
-        Type commandType;
-        
-        public CommandDescriptor( Type commandType,
-                                    Func<string, bool> conditionEvaluation, 
-                                    Func<string, string[]> parametersExtraction)
-        {
-            this.commandType = commandType;
-            this.conditionEvaluation = conditionEvaluation;
-            this.parametersExtraction = parametersExtraction;
-        }
+        bool CanHandle(string commandLine);
 
-        public bool IsCommand(string commandLine)
-        {
-            return conditionEvaluation(commandLine);
-        }
+        Command GetCommand(Codurer codurer, string commandLine);
+    }
+
+    public abstract class AbstractCommandDescriptor<TCommand> : 
+        CommandDescriptor where TCommand : Command
+    {
+        public abstract bool CanHandle(string commandLine);
 
         public Command GetCommand(Codurer codurer, string commandLine)
         {
-            string[] parameters = parametersExtraction(commandLine);
-            object[] constructorParameters = new object[] { codurer, parameters.ToArray<string>() };
-            return (Command) Activator.CreateInstance(commandType, constructorParameters);            
+            return this.BuildCommand(codurer, commandLine);
         }
+
+        protected abstract TCommand BuildCommand(Codurer codurer, string commandLine);
     }
 }

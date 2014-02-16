@@ -21,7 +21,6 @@
         {
             codurer = new Codurer(UserServiceFactory.GetInMemoryUserService());
             now = DateTime.Now;
-            InitializeCommandFactory();
 
             PostAliceMessages();
             PostBobMessages();
@@ -47,18 +46,7 @@
             AssertAliceWallIsCorrect(aliceWall);
         }
 
-        private void InitializeCommandFactory()
-        {
-            var commandDescriptors = new List<CommandDescriptor>
-            {
-                CommandDescriptorFactory.GetPostCommandDescriptor(),
-                CommandDescriptorFactory.GetTimelineCommandDescriptor(),
-                CommandDescriptorFactory.GetFollowingCommandDescriptor(),
-                CommandDescriptorFactory.GetWallCommandDescriptor()
-            };
-            
-            commandFactory = new CommandFactory(commandDescriptors);
-        }
+        
 
         private void PostBobMessages()
         {

@@ -11,19 +11,14 @@
     [TestClass]
     public class PostCommandDescriptorTest
     {
-        CommandDescriptor postCommandDescriptor = new CommandDescriptor(typeof(PostCommand),
-                commandLine => commandLine.Contains("->"),
-                commandLine => commandLine
-                    .Split(new string[] { "->" }, StringSplitOptions.RemoveEmptyEntries)
-                    .Select(parameter => parameter.Trim())
-                    .ToArray<string>());
+        CommandDescriptor postCommandDescriptor = (CommandDescriptor) new PostCommandDescriptor();
 
         string commandLine = "Alice -> new message";
 
         [TestMethod]
         public void WhenPostingAMessage_EvaluatingTheCommandReturnsTrue()
         {
-            var isPostCommand = postCommandDescriptor.IsCommand(commandLine);
+            var isPostCommand = postCommandDescriptor.CanHandle(commandLine);
             isPostCommand.Should().BeTrue();
         }
 

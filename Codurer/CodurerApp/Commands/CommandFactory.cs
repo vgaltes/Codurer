@@ -17,7 +17,7 @@
         {
             foreach( var commandDescriptor in commandDescriptors)
             {
-                if (commandDescriptor.IsCommand(commandLine))
+                if (commandDescriptor.CanHandle(commandLine))
                     return commandDescriptor.GetCommand(codurer, commandLine);
             }
 

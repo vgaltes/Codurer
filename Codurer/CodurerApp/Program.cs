@@ -14,7 +14,12 @@
         static void Main(string[] args)
         {
             var userService = UserServiceFactory.GetInMemoryUserService();
-            var commandFactory = InitializeCommandFactory();
+            //var commandFactory = InitializeCommandFactory();
+            var commandDescriptors = new List<CommandDescriptor>()
+            {
+                new PostCommandDescriptor()
+            };
+
             var codurer = new Codurer(userService);
             var quitString = "!q";
 
@@ -23,29 +28,29 @@
                                    
             while (line != quitString)
             {
-                var command = commandFactory.GetCommand(line, codurer);
-                var commandResult = command.Execute();
-                foreach (string wallMessage in commandResult.Messages)
-                {
-                    Console.WriteLine(wallMessage);
-                }
+                //var command = commandFactory.GetCommand(line, codurer);
+                //var commandResult = command.Execute();
+                //foreach (string wallMessage in commandResult.Messages)
+                //{
+                //    Console.WriteLine(wallMessage);
+                //}
 
                 Console.Write(">");
                 line = Console.ReadLine();
             }
         }
 
-        private static CommandFactory InitializeCommandFactory()
-        {
-            var commandDescriptors = new List<CommandDescriptor>
-            {
-                CommandDescriptorFactory.GetPostCommandDescriptor(),
-                CommandDescriptorFactory.GetTimelineCommandDescriptor(),
-                CommandDescriptorFactory.GetFollowingCommandDescriptor(),
-                CommandDescriptorFactory.GetWallCommandDescriptor()
-            };
-            var commandFactory = new CommandFactory(commandDescriptors);
-            return commandFactory;
-        }
+        //private static CommandFactory InitializeCommandFactory()
+        //{
+        //    var commandDescriptors = new List<CommandDescriptor>
+        //    {
+        //        CommandDescriptorFactory.GetPostCommandDescriptor(),
+        //        CommandDescriptorFactory.GetTimelineCommandDescriptor(),
+        //        CommandDescriptorFactory.GetFollowingCommandDescriptor(),
+        //        CommandDescriptorFactory.GetWallCommandDescriptor()
+        //    };
+        //    var commandFactory = new CommandFactory(commandDescriptors);
+        //    return commandFactory;
+        //}
     }
 }
