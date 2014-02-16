@@ -1,27 +1,18 @@
 ﻿namespace CodurerApp.Commands
 {
-    using System;
     using System.Collections.Generic;
-    using System.Linq;
 
-    public class CommandFactory
+    public static class CommandDescriptorFactory
     {
-        List<CommandDescriptor> commandDescriptors;
-
-        public CommandFactory(List<CommandDescriptor> commandDescriptors)
+        public static List<CommandDescriptor> GetCommandDescriptors()
         {
-            this.commandDescriptors = commandDescriptors;
-        }
-
-        public Command GetCommand(string commandLine, Codurer codurer)
-        {
-            foreach( var commandDescriptor in commandDescriptors)
+            return new List<CommandDescriptor>
             {
-                if (commandDescriptor.CanHandle(commandLine))
-                    return commandDescriptor.GetCommand(codurer, commandLine);
-            }
-
-            throw new ArgumentException("The command line contains no valid command.");
+                new PostCommandDescriptor(),
+                new TimelineCommandDescriptor(),
+                new FollowCommandDescriptor(),
+                new WallCommandDescriptor()
+            };
         }
     }
 }

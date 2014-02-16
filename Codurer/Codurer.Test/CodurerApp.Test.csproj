@@ -63,7 +63,6 @@
     <Compile Include="CommandDescriptors\WallCommandDescriptorTest.cs" />
     <Compile Include="CommandDescriptors\TimelineCommandDescriptorTest.cs" />
     <Compile Include="CommandDescriptors\PostCommandDescriptorTest.cs" />
-    <Compile Include="CommandFactoryTests.cs" />
     <Compile Include="FollowingTests.cs" />
     <Compile Include="InMemoryUserServiceFollowingTests.cs" />
     <Compile Include="InMemoryUserServicePostingTests.cs" />

@@ -1,10 +1,8 @@
 ﻿namespace CodurerApp.Test
 {
     using System;
-    using System.Collections.Generic;
     using System.Linq;
     using CodurerApp.Commands;
-    using CodurerApp.FormatRules;
     using CodurerApp.Services;
     using FluentAssertions;
     using Microsoft.VisualStudio.TestTools.UnitTesting;
@@ -14,16 +12,15 @@
     {
         Codurer codurer;
         DateTime now;
-        PostCommandDescriptor postCommandDescriptor;
-        TimelineCommandDescriptor timelineCommandDescriptor;
+        CommandExecutor commandExecutor;
 
         [TestInitialize]
         public void TestInitialize()
         {
             codurer = new Codurer(UserServiceFactory.GetInMemoryUserService());
             now = DateTime.Now;
-            postCommandDescriptor = new PostCommandDescriptor();
-            timelineCommandDescriptor = new TimelineCommandDescriptor();
+            commandExecutor = 
+                new CommandExecutor(codurer, CommandDescriptorFactory.GetCommandDescriptors());
 
             PostAliceMessages();
             PostBobMessages();
@@ -32,60 +29,39 @@
         [TestMethod]
         public void PostingAndReading()
         {
-            var aliceTimeline = GetAliceTimeline();
-            var bobTimeline = GetBobTimeline();
+            var aliceTimeline = GetTimeline("Alice");
+            var bobTimeline = GetTimeline("Bob");
 
             AssertAliceTimelineIsCorrect(aliceTimeline);
             AssertBobTimelineIsCorrect(bobTimeline);
         }
 
-        //[TestMethod]
-        //public void FollowingAndWall()
-        //{
-        //    AliceFollowsBob();
+        [TestMethod]
+        public void FollowingAndWall()
+        {
+            AliceFollowsBob();
 
-        //    var aliceWall = GetAliceWall();
+            var aliceWall = GetAliceWall();
 
-        //    AssertAliceWallIsCorrect(aliceWall);
-        //}
+            AssertAliceWallIsCorrect(aliceWall);
+        }
 
         private void PostBobMessages()
         {
-            var firstBobPostCommand = 
-                postCommandDescriptor.GetCommand(codurer, "Bob -> First message");
-            firstBobPostCommand.Execute(now.AddMinutes(-4));
-            var secondBobPostCommand =
-                postCommandDescriptor.GetCommand(codurer, "Bob -> Second message");
-            secondBobPostCommand.Execute(now);            
+            commandExecutor.ExecuteCommand("Bob -> First message", now.AddMinutes(-4));
+            commandExecutor.ExecuteCommand("Bob -> Second message", now);       
         }
 
         private void PostAliceMessages()
         {
-            var firstAlicePostCommand =
-                postCommandDescriptor.GetCommand(codurer, "Alice -> First message");
-            firstAlicePostCommand.Execute(now.AddMinutes(-5));
-            var secondAlicePostCommand =
-                postCommandDescriptor.GetCommand(codurer, "Alice -> Second message");
-            secondAlicePostCommand.Execute(now.AddMinutes(-1));
-            var thirdAlicePostCommand =
-                postCommandDescriptor.GetCommand(codurer, "Alice -> Third message");
-            thirdAlicePostCommand.Execute(now.AddSeconds(-30));
+            commandExecutor.ExecuteCommand("Alice -> First message", now.AddMinutes(-5));
+            commandExecutor.ExecuteCommand("Alice -> Second message",now.AddMinutes(-1));
+            commandExecutor.ExecuteCommand("Alice -> Third message", now.AddSeconds(-30));
         }
 
-        private CommandResult GetBobTimeline()
+        private CommandResult GetTimeline(string userName)
         {
-            var bobTimelineCommand = 
-                timelineCommandDescriptor.GetCommand(codurer, "Bob");
-            var bobTimeline = bobTimelineCommand.Execute();
-            return bobTimeline;
-        }
-
-        private CommandResult GetAliceTimeline()
-        {
-            var aliceTimelineCommand =
-                timelineCommandDescriptor.GetCommand(codurer, "Alice");
-            var aliceTimeline = aliceTimelineCommand.Execute();
-            return aliceTimeline;
+            return commandExecutor.ExecuteCommand(userName);
         }
 
         private static void AssertBobTimelineIsCorrect(CommandResult bobTimeline)
@@ -113,17 +89,14 @@
             aliceWall.Messages.Skip(4).Take(1).First().Should().Be("Alice - First message (5 minutes ago)");
         }
 
-        //private CommandResult GetAliceWall()
-        //{
-        //    var aliceWallCommand = commandFactory.GetCommand("Alice wall", codurer);
-        //    var aliceWall = aliceWallCommand.Execute();
-        //    return aliceWall;
-        //}
+        private CommandResult GetAliceWall()
+        {
+            return commandExecutor.ExecuteCommand("Alice wall");
+        }
 
-        //private void AliceFollowsBob()
-        //{
-        //    var aliceFollowBobCommand = commandFactory.GetCommand("Alice follows Bob", codurer);
-        //    aliceFollowBobCommand.Execute();
-        //}
+        private void AliceFollowsBob()
+        {
+            commandExecutor.ExecuteCommand("Alice follows Bob");
+        }
     }
 }

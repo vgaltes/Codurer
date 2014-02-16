@@ -44,7 +44,7 @@
     <Compile Include="Codurer.cs" />
     <Compile Include="Commands\Command.cs" />
     <Compile Include="Commands\CommandDescriptor.cs" />
-    <Compile Include="Commands\CommandDescriptorFactory.cs" />
+    <Compile Include="Commands\CommandExecutor.cs" />
     <Compile Include="Commands\CommandFactory.cs" />
     <Compile Include="Commands\CommandResult.cs" />
     <Compile Include="Commands\FollowCommand.cs" />
@@ -54,6 +54,7 @@
     <Compile Include="Commands\TimelineCommand.cs" />
     <Compile Include="Commands\TimelineCommandDescriptor.cs" />
     <Compile Include="Commands\WallCommand.cs" />
+    <Compile Include="Commands\WallCommandDescriptor.cs" />
     <Compile Include="FormatRules\FormatRule.cs" />
     <Compile Include="FormatRules\MinutesFormatRule.cs" />
     <Compile Include="FormatRules\NowFormatRule.cs" />
