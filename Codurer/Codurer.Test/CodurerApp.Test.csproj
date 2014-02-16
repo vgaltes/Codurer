@@ -64,11 +64,11 @@
     <Compile Include="CommandDescriptors\TimelineCommandDescriptorTest.cs" />
     <Compile Include="CommandDescriptors\PostCommandDescriptorTest.cs" />
     <Compile Include="FollowingTests.cs" />
-    <Compile Include="InMemoryUserServiceFollowingTests.cs" />
-    <Compile Include="InMemoryUserServicePostingTests.cs" />
-    <Compile Include="InMemoryUserServiceTest.cs" />
-    <Compile Include="InMemoryUserServiceWallTests.cs" />
-    <Compile Include="InMemoryUserServiceReadingTests.cs" />
+    <Compile Include="InMemoryUserService\InMemoryUserServiceFollowingTests.cs" />
+    <Compile Include="InMemoryUserService\InMemoryUserServicePostingTests.cs" />
+    <Compile Include="InMemoryUserService\InMemoryUserServiceTest.cs" />
+    <Compile Include="InMemoryUserService\InMemoryUserServiceWallTests.cs" />
+    <Compile Include="InMemoryUserService\InMemoryUserServiceReadingTests.cs" />
     <Compile Include="MessageTests.cs" />
     <Compile Include="ReadingTests.cs" />
     <Compile Include="PostingTests.cs" />
