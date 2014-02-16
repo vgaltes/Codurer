@@ -4,16 +4,16 @@
     using System.Linq;
     using CodurerApp.Commands;
 
-    public class TimelineCommandDescriptor : AbstractCommandDescriptor<TimelineCommand>
+    public class TimelineCommandDescriptor : CommandDescriptor
     {
-        public override bool CanHandle(string commandLine)
+        public bool CanHandle(string commandLine)
         {
             return commandLine
                 .Split(new string[] { " " }, StringSplitOptions.RemoveEmptyEntries)
                 .Count() == 1;
         }
 
-        protected override TimelineCommand BuildCommand(Codurer codurer, string commandLine)
+        public Command GetCommand(Codurer codurer, string commandLine)
         {
             string user = commandLine;
             return new TimelineCommand(codurer, user);

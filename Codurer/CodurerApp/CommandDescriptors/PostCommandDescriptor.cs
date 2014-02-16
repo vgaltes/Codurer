@@ -4,14 +4,14 @@
     using System.Linq;
     using CodurerApp.Commands;
 
-    public class PostCommandDescriptor : AbstractCommandDescriptor<PostCommand>
+    public class PostCommandDescriptor : CommandDescriptor
     {
-        public override bool CanHandle(string commandLine)
+        public bool CanHandle(string commandLine)
         {
             return commandLine.Contains("->");
         }  
 
-        protected override PostCommand BuildCommand(Codurer codurer, string commandLine)
+        public Command GetCommand(Codurer codurer, string commandLine)
         {
             string[] parameters = commandLine.Split(new string[] { "->" }, StringSplitOptions.RemoveEmptyEntries)
                     .Select(parameter => parameter.Trim())

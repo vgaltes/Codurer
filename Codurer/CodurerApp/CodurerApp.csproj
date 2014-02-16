@@ -42,7 +42,6 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Codurer.cs" />
-    <Compile Include="CommandDescriptors\AbstractCommandDescriptor.cs" />
     <Compile Include="Commands\Command.cs" />
     <Compile Include="CommandDescriptors\CommandDescriptor.cs" />
     <Compile Include="Commands\CommandExecutor.cs" />

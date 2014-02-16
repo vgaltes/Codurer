@@ -4,14 +4,14 @@
     using System.Linq;
     using CodurerApp.Commands;
 
-    public class WallCommandDescriptor : AbstractCommandDescriptor<WallCommand>
+    public class WallCommandDescriptor : CommandDescriptor
     {
-        public override bool CanHandle(string commandLine)
+        public bool CanHandle(string commandLine)
         {
             return commandLine.Contains("wall");
         }
 
-        protected override WallCommand BuildCommand(Codurer codurer, string commandLine)
+        public Command GetCommand(Codurer codurer, string commandLine)
         {
             string user = commandLine
                     .Split(new string[] { "wall" }, StringSplitOptions.RemoveEmptyEntries)

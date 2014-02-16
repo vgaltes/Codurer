@@ -1,6 +1,7 @@
 ﻿namespace CodurerApp.Commands
 {
     using System;
+    using System.Linq;
     using System.Collections.Generic;
     using CodurerApp.CommandDescriptors;
 
@@ -17,18 +18,10 @@
 
         public CommandResult ExecuteCommand(string commandLine)
         {
-            CommandResult commandResult = new CommandResult();
-
-            foreach (CommandDescriptor commandDescriptor in commandDescriptors)
-            {
-                if ( commandDescriptor.CanHandle(commandLine))
-                {
-                    Command command = commandDescriptor.GetCommand(codurer, commandLine);
-                    commandResult = command.Execute();
-                }
-            }
-
-            return commandResult;
+            return commandDescriptors
+                .First(commandDescriptor => commandDescriptor.CanHandle(commandLine))
+                .GetCommand(codurer, commandLine)
+                .Execute();
         }
 
         public CommandResult ExecuteCommand(string commandLine, DateTime postingTime)
