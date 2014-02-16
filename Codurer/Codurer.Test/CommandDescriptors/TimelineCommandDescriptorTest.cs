@@ -1,7 +1,6 @@
 ﻿namespace CodurerApp.Test.CommandDescriptors
 {
-    using System;
-    using System.Linq;
+    using CodurerApp.CommandDescriptors;
     using CodurerApp.Commands;
     using CodurerApp.Services;
     using FluentAssertions;

@@ -1,8 +1,9 @@
-﻿using System;
-using System.Linq;
-
-namespace CodurerApp.Commands
+﻿namespace CodurerApp.CommandDescriptors
 {
+    using System;
+    using System.Linq;
+    using CodurerApp.Commands;
+
     public class TimelineCommandDescriptor : AbstractCommandDescriptor<TimelineCommand>
     {
         public override bool CanHandle(string commandLine)

@@ -42,19 +42,20 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Codurer.cs" />
+    <Compile Include="CommandDescriptors\AbstractCommandDescriptor.cs" />
     <Compile Include="Commands\Command.cs" />
-    <Compile Include="Commands\CommandDescriptor.cs" />
+    <Compile Include="CommandDescriptors\CommandDescriptor.cs" />
     <Compile Include="Commands\CommandExecutor.cs" />
     <Compile Include="Commands\CommandExecutorFactory.cs" />
     <Compile Include="Commands\CommandResult.cs" />
     <Compile Include="Commands\FollowCommand.cs" />
-    <Compile Include="Commands\FollowCommandDescriptor.cs" />
+    <Compile Include="CommandDescriptors\FollowCommandDescriptor.cs" />
     <Compile Include="Commands\PostCommand.cs" />
-    <Compile Include="Commands\PostCommandDescriptor.cs" />
+    <Compile Include="CommandDescriptors\PostCommandDescriptor.cs" />
     <Compile Include="Commands\TimelineCommand.cs" />
-    <Compile Include="Commands\TimelineCommandDescriptor.cs" />
+    <Compile Include="CommandDescriptors\TimelineCommandDescriptor.cs" />
     <Compile Include="Commands\WallCommand.cs" />
-    <Compile Include="Commands\WallCommandDescriptor.cs" />
+    <Compile Include="CommandDescriptors\WallCommandDescriptor.cs" />
     <Compile Include="FormatRules\FormatRule.cs" />
     <Compile Include="FormatRules\MinutesFormatRule.cs" />
     <Compile Include="FormatRules\NowFormatRule.cs" />

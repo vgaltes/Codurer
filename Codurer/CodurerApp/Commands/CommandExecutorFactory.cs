@@ -1,6 +1,7 @@
 ﻿namespace CodurerApp.Commands
 {
     using System.Collections.Generic;
+    using CodurerApp.CommandDescriptors;
 
     public static class CommandDescriptorFactory
     {

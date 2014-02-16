@@ -1,7 +1,8 @@
-﻿namespace CodurerApp.Commands
+﻿namespace CodurerApp.CommandDescriptors
 {
     using System;
     using System.Linq;
+    using CodurerApp.Commands;
 
     public class FollowCommandDescriptor : AbstractCommandDescriptor<FollowCommand>
     {

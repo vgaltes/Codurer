@@ -1,16 +1,8 @@
-﻿namespace CodurerApp.Commands
+﻿namespace CodurerApp.CommandDescriptors
 {
-    using System;
-    using System.Linq;
+    using CodurerApp.Commands;
 
-    public interface CommandDescriptor
-    {
-        bool CanHandle(string commandLine);
-
-        Command GetCommand(Codurer codurer, string commandLine);
-    }
-
-    public abstract class AbstractCommandDescriptor<TCommand> : 
+    public abstract class AbstractCommandDescriptor<TCommand> :
         CommandDescriptor where TCommand : Command
     {
         public abstract bool CanHandle(string commandLine);

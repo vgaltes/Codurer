@@ -1,11 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace CodurerApp.Commands
+﻿namespace CodurerApp.CommandDescriptors
 {
+    using System;
+    using System.Linq;
+    using CodurerApp.Commands;
+
     public class PostCommandDescriptor : AbstractCommandDescriptor<PostCommand>
     {
         public override bool CanHandle(string commandLine)
