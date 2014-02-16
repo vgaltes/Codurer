@@ -48,6 +48,7 @@
     <Compile Include="Commands\CommandFactory.cs" />
     <Compile Include="Commands\CommandResult.cs" />
     <Compile Include="Commands\FollowCommand.cs" />
+    <Compile Include="Commands\FollowCommandDescriptor.cs" />
     <Compile Include="Commands\PostCommand.cs" />
     <Compile Include="Commands\PostCommandDescriptor.cs" />
     <Compile Include="Commands\TimelineCommand.cs" />
