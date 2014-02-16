@@ -8,7 +8,6 @@ namespace CodurerApp.Commands
 {
     public class PostCommandDescriptor : AbstractCommandDescriptor<PostCommand>
     {
-
         public override bool CanHandle(string commandLine)
         {
             return commandLine.Contains("->");
@@ -23,7 +22,7 @@ namespace CodurerApp.Commands
             string user = parameters[0];
             string message = parameters[1];
 
-            return new PostCommand(codurer, parameters);
+            return new PostCommand(codurer, user, message);
         }
     }
 }

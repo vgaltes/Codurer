@@ -14,8 +14,8 @@ namespace CodurerApp.Commands
 
         protected override TimelineCommand BuildCommand(Codurer codurer, string commandLine)
         {
-            string[] parameters = new string[] { commandLine };
-            return new TimelineCommand(codurer, parameters);
+            string user = commandLine;
+            return new TimelineCommand(codurer, user);
         }
     }
 }

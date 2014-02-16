@@ -12,12 +12,12 @@
 
         protected override WallCommand BuildCommand(Codurer codurer, string commandLine)
         {
-            string[] parameters = commandLine
+            string user = commandLine
                     .Split(new string[] { "wall" }, StringSplitOptions.RemoveEmptyEntries)
                     .Select(parameter => parameter.Trim())
-                    .ToArray<string>();
+                    .First();
 
-            return new WallCommand(codurer, parameters);
+            return new WallCommand(codurer, user);
         }
     }
 }

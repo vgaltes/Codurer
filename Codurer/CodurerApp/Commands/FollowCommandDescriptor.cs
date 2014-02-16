@@ -17,7 +17,10 @@
                     .Select(parameter => parameter.Trim())
                     .ToArray<string>();
 
-            return new FollowCommand(codurer, parameters);
+            string user = parameters[0];
+            string following = parameters[1];
+
+            return new FollowCommand(codurer, user, following);
         }
     }
 }
